@@ -1,0 +1,12 @@
+.map {
+  overflow: hidden;
+  max-height: 100%;
+
+  .header {
+    padding: 0 50px;
+  }
+
+  &__img {
+    width: 100%;
+  }
+}

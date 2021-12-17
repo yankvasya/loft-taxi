@@ -1,0 +1,28 @@
+@import url('~reseter.css/src/scss/minireseter.scss');
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+}
+
+button, input {
+  background: none;
+  border: 0 solid transparent;
+
+  &:active {
+    border: 0 solid transparent;
+  }
+}
+
+input {
+  outline: 0 solid transparent;
+
+  &:focus-visible {
+    outline: 0 solid transparent;
+  }
+}
+
+body {
+  font-family: Roboto, sans-serif;
+  font-style: normal;
+}

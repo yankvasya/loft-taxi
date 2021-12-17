@@ -1,23 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import {useState} from "react";
+
+import './global.scss'
+import './App.scss';
+
+import Auth from "./pages/Auth/Auth";
+import Profile from "./pages/Profile/Profile";
+import Map from "./pages/Map/Map";
 
 function App() {
+    const [mainPage, setMainPage] = useState('Auth')
+
+    const pages = {
+        'Auth': <Auth setMainPage={setMainPage} />,
+        'Map': <Map currentPage={mainPage} setCurrentPage={setMainPage} />,
+        'Profile': <Profile currentPage={mainPage} setCurrentPage={setMainPage} />
+    }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        {pages[mainPage]}
     </div>
   );
 }

@@ -1,0 +1,46 @@
+$orange: #FDBF5A;
+$active-orange: #FFA842;
+
+
+.x-button {
+  margin-top: 50px;
+  width: 353px;
+  height: 61px;
+  left: 785px;
+  top: 612px;
+  cursor: pointer;
+
+  border-radius: 70px;
+  font-weight: normal;
+  font-size: 25px;
+  line-height: 29px;
+  background: $orange;
+  color: #000000;
+
+  transition: border .5s;
+
+  &:hover {
+    border: 3px solid $active-orange;
+
+    transition: all .5s;
+  }
+
+  &:active {
+    background: $active-orange;
+    transition: all .5s;
+  }
+
+  &.disabled {
+    cursor: default;
+    color: #737373;
+    background: #D8D7D5;
+
+    &:hover {
+      border: 0 solid transparent;
+    }
+
+    &:active {
+      background: #D8D7D5;
+    }
+  }
+}

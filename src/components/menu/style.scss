@@ -1,0 +1,30 @@
+.menu {
+  display: flex;
+  gap: 44px;
+
+  &__link {
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: normal;
+    font-size: 21px;
+    line-height: 25px;
+    color: #FFFFFF;
+    transition: color .5s;
+
+    &:hover {
+      color: #d9d4d4;
+      text-decoration: underline;
+      transition: color .5s;
+    }
+
+    &.active {
+      cursor: default;
+      color: #FDBF5A;
+
+      &:hover {
+        text-decoration: none;
+        color: #FDBF5A;
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+@import '../../styles/_vars.scss';
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 102px;
+  background: #1C1A19;
+
+  .logo {
+    display: flex;
+    align-items: center;
+
+    &__img {
+      width: 61px;
+      height: 61px;
+      color: $logo-color;
+    }
+
+    &__title {
+      margin-left: 16px;
+      width: 192px;
+      height: 36px;
+      color: $logo-color;
+    }
+  }
+}
