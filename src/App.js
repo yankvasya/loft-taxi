@@ -1,7 +1,7 @@
 import {useState} from "react";
 
-import './global.scss'
-import './App.scss';
+import './styles/global.scss'
+import './styles/App.scss';
 
 import Auth from "./pages/Auth/Auth";
 import Profile from "./pages/Profile/Profile";
