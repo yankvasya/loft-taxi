@@ -3,8 +3,9 @@ import './style.scss'
 const Button = ({text, disabled, eventClick}) => {
     const handleClick = e => {
         e.preventDefault()
-        eventClick()
+        eventClick(e)
     }
+
     return (
         <button
             className={disabled ? "x-button disabled" : "x-button"}

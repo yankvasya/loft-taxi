@@ -26,7 +26,7 @@ const Menu = ({currentPage, setCurrentPage}) => {
             </li>
             <li className="menu__item">
                 <button className={currentPage === 'Logout' ? 'menu__link active' : 'menu__link'}
-                        onClick={e => goToPage(e)}
+                        onClick={e => goToPage(e, 'Auth')}
                         disabled={currentPage === 'Logout'}
                 >
                     Выйти
