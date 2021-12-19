@@ -8,8 +8,6 @@ const Menu = ({currentPage, setCurrentPage}) => {
             { title: 'Выйти', name: 'Auth' }
         ]
 
-
-
     const goToPage = (e, page) => {
         e.preventDefault()
         setCurrentPage(page)

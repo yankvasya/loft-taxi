@@ -4,6 +4,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  position: relative;
+  z-index: 10;
+
   height: 102px;
   background: $nice-black;
 

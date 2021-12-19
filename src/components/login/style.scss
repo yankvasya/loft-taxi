@@ -17,24 +17,7 @@
   .form {
     display: flex;
     flex-direction: column;
-
     margin-top: 57px;
-
-    &__label {
-      font-style: normal;
-      font-weight: bold;
-      font-size: 16px;
-      line-height: 19px;
-      color: $black;
-
-      &:not(:first-child) {
-        margin-top: 25px;
-      }
-    }
-
-    &__input {
-      @include input;
-    }
 
     &__forgot-password {
       margin-top: 13px;

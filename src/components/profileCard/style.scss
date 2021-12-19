@@ -55,9 +55,9 @@
       flex-direction: column;
     }
 
-    &__input {
-      @include input;
-    }
+    //&__input {
+    //  @include input;
+    //}
 
     &__info {
       display: flex;

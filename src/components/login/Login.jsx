@@ -1,5 +1,6 @@
 import './style.scss'
 import Button from '../button/Button'
+import Field from '../field/Field'
 
 const Login = ({setPage, setMainPage}) => {
     return (<div className="authorization">
@@ -7,16 +8,22 @@ const Login = ({setPage, setMainPage}) => {
                 <h1 className="authorization__title">Войти</h1>
 
                 <form className="form">
-                    <label htmlFor="email" className="form__label">Email</label>
-                    <input name="email" type="text" placeholder="mail@mail.ru" className="form__input"
-                           autoComplete="email"/>
-                    <label htmlFor="password" className="form__label">Password</label>
-                    <input
-                        name="password"
+                    <Field
+                        currentId="email"
+                        text="Email"
+                        placeholder="mail@mail.ru"
+                        autocomplete="email"
+                        type="text"
+                    />
+
+                    <Field
+                        currentId="password"
+                        text="Password"
                         placeholder="*************"
+                        autocomplete="password"
                         type="password"
-                        className="form__input"
-                        autoComplete="password"/>
+                    />
+
                     <label className="form__forgot-password">
                         <span onClick={() => console.log('Забыли пароль')}>
                             Забыли пароль?

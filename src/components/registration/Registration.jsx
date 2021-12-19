@@ -1,5 +1,6 @@
 import './style.scss'
 import Button from '../button/Button'
+import Field from "../field/Field";
 
 const Registration = ({setPage}) => (
     <div className="authorization">
@@ -7,25 +8,30 @@ const Registration = ({setPage}) => (
             <h1 className="registration__title">Регистрация</h1>
 
             <form className="form">
-                <label htmlFor="email" className="form__label">Email*</label>
-                <input name="email"
-                       type="text"
-                       placeholder="mail@mail.ru"
-                       className="form__input"
-                       autoComplete="email"/>
-                <label htmlFor="firstname" className="form__label">Как вас зовут?*</label>
-                <input name="firstname"
-                       type="text"
-                       placeholder="Петр Александрович"
-                       className="form__input"
-                       autoComplete="name"/>
-                <label htmlFor="password" className="form__label">Придумайте пароль*</label>
-                <input
-                    name="password"
+                <Field
+                    currentId="email"
+                    text="Email"
+                    placeholder="mail@mail.ru"
+                    autocomplete="email"
+                    type="text"
+                />
+
+                <Field
+                    currentId="firstname"
+                    text="Как вас зовут?*"
+                    placeholder="Петр Александрович"
+                    autocomplete="name"
+                    type="text"
+                />
+
+                <Field
+                    currentId="password"
+                    text="Придумайте пароль*"
                     placeholder="*************"
+                    autocomplete="password"
                     type="password"
-                    className="form__input"
-                    autoComplete="password"/>
+                />
+
                 <Button text="Зарегистрироваться" disabled={false} eventClick={() => setPage('login')}/>
             </form>
 

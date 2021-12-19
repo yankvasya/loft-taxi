@@ -17,22 +17,6 @@
   border-radius: 20px;
 }
 
-@mixin input {
-  padding: 10px 0;
-  border-bottom: 2px solid #E4E4E4;
-  transition: border .5s;
-
-  font-weight: normal;
-  font-size: 18px;
-  line-height: 21px;
-  color: #000000;
-
-  &:focus-visible {
-    border-bottom: 2px solid #2D7EF7;
-    transition: border .5s;
-  }
-}
-
 @mixin change-type {
   margin-top: 33px;
   display: flex;
