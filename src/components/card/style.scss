@@ -44,6 +44,9 @@
   }
 
   &__number {
+    display: flex;
+    gap: 18px;
+
     font-weight: normal;
     font-size: 21px;
     line-height: 25px;

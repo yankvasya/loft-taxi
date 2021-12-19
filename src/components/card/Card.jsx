@@ -14,7 +14,12 @@ const Card = () => {
                     05/08
                 </div>
             </div>
-            <div className="card__number">5545 2300 3432 4521</div>
+            <div className="card__number">
+                <span>5545</span>
+                <span>2300</span>
+                <span>3432</span>
+                <span>4521</span>
+            </div>
             <div className="card__row">
                 <Chip className="card__chip" />
                 <div className="card__mastercard">

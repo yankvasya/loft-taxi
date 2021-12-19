@@ -1,6 +1,7 @@
 import './style.scss'
 import Button from '../button/Button'
 import Card from '../card/Card'
+import Field from "../field/Field";
 
 const ProfileCard = () => {
     const saveProfileData = info => {
@@ -14,45 +15,38 @@ const ProfileCard = () => {
 
             <div className="profile__data">
                 <form className="profile__form form">
-                    <div className="form__field">
-                        <label htmlFor="card-name" className="form__title">Имя владельца</label>
-                        <input
-                            name="name"
-                            id="card-name"
-                            type="text"
-                            className="form__input"
-                        />
-                    </div>
+                    <Field
+                        currentId="name"
+                        text="Имя владельца"
+                        placeholder=""
+                        autocomplete="name"
+                        type="text"
+                    />
 
-                    <div className="form__field">
-                        <label htmlFor="card-number" className="form__title">Номер карты</label>
-                        <input
-                            name="number"
-                            id="card-number"
-                            type="text"
-                            className="form__input"
-                        />
-                    </div>
+                    <Field
+                        currentId="card-number"
+                        text="Номер карты"
+                        placeholder=""
+                        autocomplete="card-number"
+                        type="text"
+                    />
 
                     <div className="form__info">
-                        <div className="form__field">
-                            <label htmlFor="card-data" className="form__title">MM/YY</label>
-                            <input
-                                name="data"
-                                id="card-data"
-                                type="text"
-                                className="form__input"
-                            />
-                        </div>
-                        <div className="form__field">
-                            <label htmlFor="card-cvc" className="form__title">CVC</label>
-                            <input
-                                name="cvc"
-                                id="card-cvc"
-                                type="text"
-                                className="form__input"
-                            />
-                        </div>
+                        <Field
+                            currentId="card-data"
+                            text="MM/YY"
+                            placeholder=""
+                            autocomplete="card-data"
+                            type="text"
+                        />
+
+                        <Field
+                            currentId="card-cvc"
+                            text="CVC"
+                            placeholder=""
+                            autocomplete="card-cvc"
+                            type="text"
+                        />
                     </div>
                     <div className="form__submit">
                         <Button

@@ -12,7 +12,7 @@
 
   min-width: 888px;
   min-height: 588px;
-  padding: 59px 44px 67px;
+  padding: 59px 44px 169px;
 
   background: $white;
   box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.1);
@@ -26,6 +26,7 @@
   }
 
   &__description {
+    margin-top: 13px;
     font-weight: normal;
     font-size: 18px;
     line-height: 21px;
@@ -50,14 +51,27 @@
       color: $grey;
     }
 
-    &__field {
+    .field {
       display: flex;
       flex-direction: column;
-    }
 
-    //&__input {
-    //  @include input;
-    //}
+      .label {
+        font-weight: normal;
+        color: $grey;
+      }
+
+      .input {
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 19px;
+        color: $black;
+      }
+
+      &:not(:first-child) {
+        margin-top: 0;
+
+      }
+    }
 
     &__info {
       display: flex;
