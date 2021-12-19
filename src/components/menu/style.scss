@@ -1,0 +1,32 @@
+@import '../../styles/vars';
+
+.menu {
+  display: flex;
+  gap: 44px;
+
+  &__link {
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: normal;
+    font-size: 21px;
+    line-height: 25px;
+    color: $white;
+    transition: color .5s;
+
+    &:hover {
+      color: $not-quite-white;
+      text-decoration: underline;
+      transition: color .5s;
+    }
+
+    &.active {
+      cursor: default;
+      color: $orange;
+
+      &:hover {
+        text-decoration: none;
+        color: $orange;
+      }
+    }
+  }
+}

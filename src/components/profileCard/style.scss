@@ -1,0 +1,88 @@
+@import '../../styles/mixins';
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  min-width: 888px;
+  min-height: 588px;
+  padding: 59px 44px 169px;
+
+  background: $white;
+  box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+
+  &__title {
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 42px;
+    color: $black;
+  }
+
+  &__description {
+    margin-top: 13px;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+    color: $desc-grey;
+  }
+
+  &__data {
+    display: flex;
+    margin-top: 51px;
+    gap: 100px;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+
+    &__title {
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 19px;
+      color: $grey;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+
+      .label {
+        font-weight: normal;
+        color: $grey;
+      }
+
+      .input {
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 19px;
+        color: $black;
+      }
+
+      &:not(:first-child) {
+        margin-top: 0;
+
+      }
+    }
+
+    &__info {
+      display: flex;
+      gap: 35px;
+    }
+
+    &__submit {
+      position: absolute;
+      left: 50%;
+      bottom: 67px;
+      transform: translate(-50%, 0);
+    }
+  }
+}

@@ -1,0 +1,48 @@
+@import '../../styles/mixins';
+
+.authorization {
+  &__title {
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 35px;
+    text-align: center;
+
+    color: $black;
+  }
+
+  &__form {
+    @include form-box;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 57px;
+
+    &__forgot-password {
+      margin-top: 13px;
+      display: flex;
+      justify-content: flex-end;
+
+      & span {
+        text-decoration: none;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 19px;
+        color: $grey;
+
+        &:hover {
+          text-decoration: underline;
+        }
+
+        &:active {
+          color: $about-grey;
+        }
+      }
+    }
+  }
+
+  .change-type {
+    @include change-type;
+  }
+}

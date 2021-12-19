@@ -1,0 +1,29 @@
+@import '../../styles/vars';
+
+.aside {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 485px;
+  height: 100%;
+
+  background: $nice-black;
+
+  .title {
+    margin-top: 22px;
+  }
+
+  .logo {
+    width: 136px;
+    height: 136px;
+    color: $logo-color;
+  }
+
+  .title {
+    width: 196px;
+    height: 36px;
+    color: $logo-color;
+  }
+}

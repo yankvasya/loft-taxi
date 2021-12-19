@@ -1,0 +1,32 @@
+@import '../../styles/_vars.scss';
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  position: relative;
+  z-index: 10;
+
+  height: 102px;
+  background: $nice-black;
+
+  .logo {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+
+    &__img {
+      width: 61px;
+      height: 61px;
+      color: $logo-color;
+    }
+
+    &__title {
+      margin-left: 16px;
+      width: 192px;
+      height: 36px;
+      color: $logo-color;
+    }
+  }
+}

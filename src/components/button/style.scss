@@ -1,0 +1,42 @@
+@import '../../styles/vars';
+
+.x-button {
+  margin-top: 50px;
+  width: 353px;
+  height: 61px;
+  cursor: pointer;
+
+  border-radius: 70px;
+  font-weight: normal;
+  font-size: 25px;
+  line-height: 29px;
+  background: $orange;
+  color: $black;
+
+  transition: border .5s;
+
+  &:hover {
+    border: 3px solid $active-orange;
+
+    transition: all .5s;
+  }
+
+  &:active {
+    background: $active-orange;
+    transition: all .5s;
+  }
+
+  &.disabled {
+    cursor: default;
+    color: #737373;
+    background: $nice-white;
+
+    &:hover {
+      border: 0 solid transparent;
+    }
+
+    &:active {
+      background: $nice-white;
+    }
+  }
+}

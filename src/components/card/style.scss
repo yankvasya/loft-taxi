@@ -1,0 +1,88 @@
+@import '../../styles/vars';
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  width: 347px;
+  height: 182px;
+  padding: 18px 16px 16px 28px;
+
+  background: $white;
+  box-shadow: 0 5px 20px 2px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+
+  &__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__logo {
+    width: 33px;
+    color: $logo-color;
+  }
+
+  &__data {
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+    color: $black;
+  }
+
+  &__chip {
+    width: 30px;
+    height: 27px;
+    color: $about-white;
+    transition: color .5s;
+
+    &:hover {
+      color: $active-orange;
+      transition: color .5s;
+    }
+  }
+
+  &__number {
+    display: flex;
+    gap: 18px;
+
+    font-weight: normal;
+    font-size: 21px;
+    line-height: 25px;
+    color: $black;
+  }
+
+  &__mastercard {
+    position: relative;
+    height: 28px;
+    width: 46px;
+
+    svg {
+      position: absolute;
+      width: 28px;
+      height: 28px;
+      color: $almost-white;
+
+      transition: color .5s;
+
+      &:first-child {
+        transform: translateX(70%);
+        z-index: 3;
+      }
+    }
+
+    &:hover {
+      svg:first-child {
+        color: $mastercard-orange;
+        transition: color .5s;
+      }
+
+      svg:last-child {
+        color: $mastercard-red;
+        z-index: 2;
+        transition: color .5s;
+      }
+    }
+  }
+}
