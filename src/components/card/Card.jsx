@@ -1,7 +1,8 @@
-import './style.scss';
-import {ReactComponent as Logo}  from "../../assets/logo/logo.svg";
-import {ReactComponent as Chip}  from "../../assets/icons/chip.svg";
-import {ReactComponent as Ellipse}  from "../../assets/icons/ellipse.svg";
+import './style.scss'
+
+import {ReactComponent as Logo}  from '../../assets/logo/logo.svg'
+import {ReactComponent as Chip}  from '../../assets/icons/chip.svg'
+import {ReactComponent as Ellipse}  from '../../assets/icons/ellipse.svg'
 
 const Card = () => {
 

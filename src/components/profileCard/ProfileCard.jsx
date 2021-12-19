@@ -1,6 +1,6 @@
-import './style.scss';
-import Button from "../button/Button";
-import Card from "../card/Card";
+import './style.scss'
+import Button from '../button/Button'
+import Card from '../card/Card'
 
 const ProfileCard = () => {
     const saveProfileData = info => {

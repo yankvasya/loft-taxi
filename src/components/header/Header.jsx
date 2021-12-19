@@ -3,7 +3,7 @@ import './style.scss'
 import { ReactComponent as Logo } from '../../assets/logo/logo.svg'
 import { ReactComponent as Title } from '../../assets/logo/title.svg'
 
-import Menu from "../menu/Menu";
+import Menu from '../menu/Menu'
 
 const Header = ({currentPage, setCurrentPage}) => {
     const goMainPage = e => {

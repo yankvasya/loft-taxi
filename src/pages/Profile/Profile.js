@@ -1,8 +1,8 @@
 import './style.scss'
 
-import Header from "../../components/header/Header";
-import mapImg from "../../assets/img/map.jpg";
-import ProfileCard from "../../components/profileCard/ProfileCard";
+import Header from '../../components/header/Header'
+import mapImg from '../../assets/img/map.jpg'
+import ProfileCard from '../../components/profileCard/ProfileCard'
 
 const Profile = ({currentPage, setCurrentPage}) => {
     return (

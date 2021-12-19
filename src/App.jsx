@@ -1,11 +1,11 @@
-import {useState} from "react";
+import { useState } from 'react'
 
 import './styles/global.scss'
-import './styles/App.scss';
+import './styles/App.scss'
 
-import Auth from "./pages/Auth/Auth";
-import Profile from "./pages/Profile/Profile";
-import Map from "./pages/Map/Map";
+import Auth from './pages/Auth/Auth'
+import Profile from './pages/Profile/Profile'
+import Map from './pages/Map/Map'
 
 function App() {
     const [mainPage, setMainPage] = useState('Auth')

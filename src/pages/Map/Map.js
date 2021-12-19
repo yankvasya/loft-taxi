@@ -1,6 +1,6 @@
 import './style.scss'
 import mapImg from '../../assets/img/map.jpg'
-import Header from "../../components/header/Header";
+import Header from '../../components/header/Header'
 
 const Map = ({currentPage, setCurrentPage}) => {
     return (

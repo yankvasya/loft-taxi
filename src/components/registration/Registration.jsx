@@ -1,5 +1,5 @@
 import './style.scss'
-import Button from "../button/Button";
+import Button from '../button/Button'
 
 const Registration = ({setPage}) => (
     <div className="authorization">
