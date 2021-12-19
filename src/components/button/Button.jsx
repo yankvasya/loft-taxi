@@ -9,7 +9,7 @@ const Button = ({text, disabled, eventClick}) => {
     return (
         <button
             className={disabled ? 'x-button disabled' : 'x-button'}
-            onClick={e => handleClick(e)}
+            onClick={handleClick}
             disabled={disabled}
         >
             {text || 'button'}

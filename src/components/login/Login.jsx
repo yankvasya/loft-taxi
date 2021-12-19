@@ -18,9 +18,9 @@ const Login = ({setPage, setMainPage}) => {
                         className="form__input"
                         autoComplete="password"/>
                     <label className="form__forgot-password">
-                        <button onClick={e => e.preventDefault()}>
+                        <span onClick={() => console.log('Забыли пароль')}>
                             Забыли пароль?
-                        </button>
+                        </span>
                     </label>
                     <Button text="Войти" disabled={false} eventClick={() => setMainPage('Map')}/>
                 </form>
