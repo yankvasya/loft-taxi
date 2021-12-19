@@ -7,7 +7,7 @@
     line-height: 35px;
     text-align: center;
 
-    color: #000000;
+    color: $black;
   }
 
   &__form {
@@ -20,12 +20,12 @@
 
     margin-top: 57px;
 
-    &__title {
+    &__label {
       font-style: normal;
       font-weight: bold;
       font-size: 16px;
       line-height: 19px;
-      color: #000000;
+      color: $black;
 
       &:not(:first-child) {
         margin-top: 25px;
@@ -46,14 +46,14 @@
         font-weight: normal;
         font-size: 16px;
         line-height: 19px;
-        color: #828282;
+        color: $grey;
 
         &:hover {
           text-decoration: underline;
         }
 
         &:active {
-          color: #545454;
+          color: $about-grey;
         }
       }
     }

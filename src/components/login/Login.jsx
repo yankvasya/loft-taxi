@@ -7,10 +7,10 @@ const Login = ({setPage, setMainPage}) => {
                 <h1 className="authorization__title">Войти</h1>
 
                 <form className="form">
-                    <label htmlFor="email" className="form__title">Email</label>
+                    <label htmlFor="email" className="form__label">Email</label>
                     <input name="email" type="text" placeholder="mail@mail.ru" className="form__input"
                            autoComplete="email"/>
-                    <label htmlFor="password" className="form__title">Password</label>
+                    <label htmlFor="password" className="form__label">Password</label>
                     <input
                         name="password"
                         placeholder="*************"

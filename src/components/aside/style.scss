@@ -4,15 +4,12 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-
   align-items: center;
 
-  min-width: 485px;
+  width: 485px;
   height: 100%;
-  left: 0;
-  top: 0;
 
-  background: #1C1A19;
+  background: $nice-black;
 
   .title {
     margin-top: 22px;

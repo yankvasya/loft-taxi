@@ -1,6 +1,4 @@
-$orange: #FDBF5A;
-$active-orange: #FFA842;
-
+@import '../../styles/vars';
 
 .x-button {
   margin-top: 50px;
@@ -13,7 +11,7 @@ $active-orange: #FFA842;
   font-size: 25px;
   line-height: 29px;
   background: $orange;
-  color: #000000;
+  color: $black;
 
   transition: border .5s;
 
@@ -31,14 +29,14 @@ $active-orange: #FFA842;
   &.disabled {
     cursor: default;
     color: #737373;
-    background: #D8D7D5;
+    background: $nice-white;
 
     &:hover {
       border: 0 solid transparent;
     }
 
     &:active {
-      background: #D8D7D5;
+      background: $nice-white;
     }
   }
 }

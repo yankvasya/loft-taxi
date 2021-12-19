@@ -7,19 +7,19 @@ const Registration = ({setPage}) => (
             <h1 className="registration__title">Регистрация</h1>
 
             <form className="form">
-                <label htmlFor="email" className="form__title">Email*</label>
+                <label htmlFor="email" className="form__label">Email*</label>
                 <input name="email"
                        type="text"
                        placeholder="mail@mail.ru"
                        className="form__input"
                        autoComplete="email"/>
-                <label htmlFor="firstname" className="form__title">Как вас зовут?*</label>
+                <label htmlFor="firstname" className="form__label">Как вас зовут?*</label>
                 <input name="firstname"
                        type="text"
                        placeholder="Петр Александрович"
                        className="form__input"
                        autoComplete="name"/>
-                <label htmlFor="password" className="form__title">Придумайте пароль*</label>
+                <label htmlFor="password" className="form__label">Придумайте пароль*</label>
                 <input
                     name="password"
                     placeholder="*************"
