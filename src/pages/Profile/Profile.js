@@ -1,18 +1,14 @@
 import './style.scss'
 
 import Header from '../../components/header/Header'
-import mapImg from '../../assets/img/map.jpg'
 import ProfileCard from '../../components/profileCard/ProfileCard'
+import MapBox from '../../components/mapbox/MapBox'
 
 const Profile = ({currentPage, setCurrentPage}) => {
     return (
-        <div className="map">
+        <div className="page">
             <Header currentPage={currentPage} setCurrentPage={setCurrentPage} />
-            <img
-                src={mapImg}
-                alt="Заглушка карты"
-                className="map__img"
-            />
+            <MapBox />
 
             <ProfileCard />
         </div>
