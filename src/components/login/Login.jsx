@@ -35,7 +35,7 @@ export const Login = ({ setPage, setMainPage, isLoggedIn, logIn }) => {
                     </span>
                     </label>
                     <Button
-                        text={'Попытка'}
+                        text={'Попытка входа'}
                         disabled={false} type="submit"
                     />
                 </form>
