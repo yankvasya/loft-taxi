@@ -1,13 +1,20 @@
 import './style.scss'
 import Button from '../button/Button'
 import Field from '../field/Field'
+import { withAuth } from '../authContext/AuthContext'
 
-const Login = ({setPage, setMainPage}) => {
+export const Login = ({ setPage, setMainPage, isLoggedIn, logIn }) => {
+    const authorization = e => {
+        e.preventDefault()
+        const { email, password } = e.target
+        logIn(email.value, password.value)
+    }
+
     return (<div className="authorization">
             <div className="authorization__form">
                 <h1 className="authorization__title">Войти</h1>
 
-                <form className="form">
+                <form onSubmit={authorization} className="form">
                     <Field
                         currentId="email"
                         text="Email"
@@ -29,7 +36,11 @@ const Login = ({setPage, setMainPage}) => {
                             Забыли пароль?
                         </span>
                     </label>
-                    <Button text="Войти" disabled={false} eventClick={() => setMainPage('Map')}/>
+                    <Button
+                        text={isLoggedIn ? 'Войти' : 'Попытка'}
+                        disabled={false} type="submit"
+                        eventClick={isLoggedIn && (() => setMainPage('Map'))}
+                    />
                 </form>
 
                 <div className="change-type">
@@ -41,4 +52,4 @@ const Login = ({setPage, setMainPage}) => {
     )
 }
 
-export default Login
+export const LoginWithData = withAuth(Login)

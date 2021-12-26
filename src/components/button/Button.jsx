@@ -1,9 +1,10 @@
 import './style.scss'
 
-const Button = ({text, disabled, eventClick}) => {
+const Button = ({text, disabled, eventClick, type}) => {
     const handleClick = e => {
+        if (!eventClick) return
         e.preventDefault()
-        eventClick(e)
+         eventClick(e)
     }
 
     return (
@@ -11,6 +12,7 @@ const Button = ({text, disabled, eventClick}) => {
             className={disabled ? 'x-button disabled' : 'x-button'}
             onClick={handleClick}
             disabled={disabled}
+            type={type}
         >
             {text || 'button'}
         </button>

@@ -3,8 +3,9 @@ import './style.scss'
 import Header from '../../components/header/Header'
 import ProfileCard from '../../components/profileCard/ProfileCard'
 import MapBox from '../../components/mapbox/MapBox'
+import { withAuth } from '../../components/authContext/AuthContext'
 
-const Profile = ({currentPage, setCurrentPage}) => {
+export const Profile = ({currentPage, setCurrentPage}) => {
     return (
         <div className="page">
             <Header currentPage={currentPage} setCurrentPage={setCurrentPage} />
@@ -15,4 +16,4 @@ const Profile = ({currentPage, setCurrentPage}) => {
     )
 }
 
-export default Profile
+export const ProfileWithData = withAuth(Profile)

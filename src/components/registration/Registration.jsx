@@ -1,8 +1,9 @@
 import './style.scss'
 import Button from '../button/Button'
-import Field from "../field/Field";
+import Field from '../field/Field'
+import { withAuth } from '../authContext/AuthContext'
 
-const Registration = ({setPage}) => (
+export const Registration = ({setPage}) => (
     <div className="authorization">
         <div className="authorization__form">
             <h1 className="registration__title">Регистрация</h1>
@@ -43,4 +44,4 @@ const Registration = ({setPage}) => (
     </div>
 )
 
-export default Registration
+export const RegistrationWithData = withAuth(Registration)

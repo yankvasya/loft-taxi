@@ -2,8 +2,9 @@ import './style.scss'
 
 import Header from '../../components/header/Header'
 import MapBox from "../../components/mapbox/MapBox";
+import { withAuth } from '../../components/authContext/AuthContext'
 
-const Map = ({currentPage, setCurrentPage}) => {
+export const Map = ({currentPage, setCurrentPage}) => {
     return (
         <div className="page">
             <Header currentPage={currentPage} setCurrentPage={setCurrentPage} />
@@ -12,4 +13,4 @@ const Map = ({currentPage, setCurrentPage}) => {
     )
 }
 
-export default Map
+export const MapWithData = withAuth(Map)
