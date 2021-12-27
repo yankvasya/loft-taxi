@@ -3,7 +3,7 @@ import { useState } from 'react'
 import './styles/global.scss'
 import './styles/App.scss'
 
-import { AuthWithData } from './pages/Auth/Auth'
+import Auth from './pages/Auth/Auth'
 import { ProfileWithData } from './pages/Profile/Profile'
 import { MapWithData } from './pages/Map/Map'
 import { withAuth } from './components/authContext/AuthContext'
@@ -14,7 +14,7 @@ const App = ({ isLoggedIn }) => {
     const setCurrentPage = page => isLoggedIn ? setMainPage(page) : setMainPage('Auth')
 
     const pages = {
-        Auth: <AuthWithData setCurrentPage={setCurrentPage} />,
+        Auth: <Auth setCurrentPage={setCurrentPage} />,
         Map: <MapWithData currentPage={mainPage} setCurrentPage={setCurrentPage} />,
         Profile: <ProfileWithData currentPage={mainPage} setCurrentPage={setCurrentPage} />
     }
