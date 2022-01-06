@@ -1,14 +1,14 @@
 import './style.scss'
 
-import Login from '../../components/login/Login'
+import { LoginWithData } from '../../components/login/Login'
 import Aside from '../../components/aside/Aside'
 import Registration from '../../components/registration/Registration'
 import { useState } from 'react'
 
-const Auth = ({setMainPage}) => {
+const Auth = ({ setCurrentPage }) => {
     const [page, setPage] = useState('login');
     const pages = {
-        login: <Login page={page} setPage={setPage} setMainPage={setMainPage} />,
+        login: <LoginWithData page={page} setPage={setPage} setMainPage={setCurrentPage} />,
         registration: <Registration page={page} setPage={setPage} />
     }
 

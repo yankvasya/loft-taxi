@@ -1,3 +1,8 @@
 @import '../../styles/mixins';
 
-@include map-container;
+@include page-container;
+
+.page {
+  height: 100%;
+  background: url('../../assets/img/map-plug.jpg') top center/cover repeat;
+}

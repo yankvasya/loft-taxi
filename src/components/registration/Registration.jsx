@@ -1,6 +1,6 @@
 import './style.scss'
 import Button from '../button/Button'
-import Field from "../field/Field";
+import Field from '../field/Field'
 
 const Registration = ({setPage}) => (
     <div className="authorization">

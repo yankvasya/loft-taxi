@@ -1,18 +1,16 @@
 import './style.scss'
-import mapImg from '../../assets/img/map.jpg'
-import Header from '../../components/header/Header'
 
-const Map = ({currentPage, setCurrentPage}) => {
+import Header from '../../components/header/Header'
+import MapBox from '../../components/mapbox/MapBox'
+import { withAuth } from '../../components/authContext/AuthContext'
+
+export const Map = ({currentPage, setCurrentPage}) => {
     return (
-        <div className="map">
+        <div className="page">
             <Header currentPage={currentPage} setCurrentPage={setCurrentPage} />
-            <img
-                src={mapImg}
-                alt="Заглушка карты"
-                className="map__img"
-            />
+            <MapBox />
         </div>
     )
 }
 
-export default Map
+export const MapWithData = withAuth(Map)
