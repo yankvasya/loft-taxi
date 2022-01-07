@@ -1,14 +1,14 @@
 import './style.scss'
 import Button from '../button/Button'
 import Card from '../card/Card'
-import Field from "../field/Field";
+import Field from '../field/Field'
 
 const ProfileCard = () => {
-    const saveProfileData = info => {
-        console.log('save' ,info)
-    }
+  const saveProfileData = info => {
+    console.log('save', info)
+  }
 
-    return (
+  return (
         <div className="profile">
             <h1 className="profile__title">Профиль</h1>
             <h3 className="profile__description">Введите платежные данные</h3>
@@ -61,7 +61,7 @@ const ProfileCard = () => {
                 <Card />
             </div>
         </div>
-    )
+  )
 }
 
-export default ProfileCard;
+export default ProfileCard

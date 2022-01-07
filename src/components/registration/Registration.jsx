@@ -2,7 +2,7 @@ import './style.scss'
 import Button from '../button/Button'
 import Field from '../field/Field'
 
-const Registration = ({setPage}) => (
+const Registration = ({ setPage }) => (
     <div className="authorization">
         <div className="authorization__form">
             <h1 className="registration__title">Регистрация</h1>

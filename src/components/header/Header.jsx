@@ -5,12 +5,12 @@ import { ReactComponent as Title } from '../../assets/logo/title.svg'
 
 import Menu from '../menu/Menu'
 
-const Header = ({currentPage, setCurrentPage}) => {
-    const goMainPage = () => {
-        setCurrentPage('Map')
-    }
+const Header = ({ currentPage, setCurrentPage }) => {
+  const goMainPage = () => {
+    setCurrentPage('Map')
+  }
 
-    return (
+  return (
         <header className="header">
             <button className="logo" onClick={goMainPage}>
                 <Logo className="logo__img" />
@@ -18,7 +18,7 @@ const Header = ({currentPage, setCurrentPage}) => {
             </button>
             <Menu currentPage={currentPage} setCurrentPage={setCurrentPage} />
         </header>
-    )
+  )
 }
 
 export default Header

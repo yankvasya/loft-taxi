@@ -1,30 +1,30 @@
 import './style.scss'
-import { withAuth } from "../authContext/AuthContext";
+import { withAuth } from '../authContext/AuthContext'
 
-const Menu = ({currentPage, setCurrentPage, logOut}) => {
-    const pages =
+const Menu = ({ currentPage, setCurrentPage, logOut }) => {
+  const pages =
         [
-            { title: 'Карта', name: 'Map' },
-            { title: 'Профиль', name: 'Profile' },
-            { title: 'Выйти', name: 'Auth' }
+          { title: 'Карта', name: 'Map' },
+          { title: 'Профиль', name: 'Profile' },
+          { title: 'Выйти', name: 'Auth' }
         ]
 
-    const goToPage = (e, page) => {
-        e.preventDefault()
-        setCurrentPage(page)
-    }
+  const goToPage = (e, page) => {
+    e.preventDefault()
+    setCurrentPage(page)
+  }
 
-    const logout = (e, page) => {
-        logOut()
-        goToPage(e, page)
-    }
+  const logout = (e, page) => {
+    logOut()
+    goToPage(e, page)
+  }
 
-    return (
+  return (
         <ul className="menu">
-            {pages.map(({ name,title }) => (
+            {pages.map(({ name, title }) => (
                 <li className="menu__item" key={name}>
                     <button
-                        className={`menu__link ${currentPage === name && 'active' }`}
+                        className={`menu__link ${currentPage === name && 'active'}`}
                         onClick={e => title === 'Выйти' ? logout(e, name) : goToPage(e, name)}
                         disabled={currentPage === name}
                     >
@@ -33,7 +33,7 @@ const Menu = ({currentPage, setCurrentPage, logOut}) => {
                 </li>
             ))}
         </ul>
-    )
+  )
 }
 
 export default withAuth(Menu)

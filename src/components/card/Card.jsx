@@ -1,12 +1,11 @@
 import './style.scss'
 
-import {ReactComponent as Logo}  from '../../assets/logo/logo.svg'
-import {ReactComponent as Chip}  from '../../assets/icons/chip.svg'
-import {ReactComponent as Ellipse}  from '../../assets/icons/ellipse.svg'
+import { ReactComponent as Logo } from '../../assets/logo/logo.svg'
+import { ReactComponent as Chip } from '../../assets/icons/chip.svg'
+import { ReactComponent as Ellipse } from '../../assets/icons/ellipse.svg'
 
 const Card = () => {
-
-    return (
+  return (
         <div className="card">
             <div className="card__row">
                 <Logo className="card__logo" />
@@ -28,7 +27,7 @@ const Card = () => {
                 </div>
             </div>
         </div>
-    )
+  )
 }
 
-export default Card;
+export default Card

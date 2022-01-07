@@ -4,13 +4,14 @@ import Field from '../field/Field'
 import { withAuth } from '../authContext/AuthContext'
 
 export const Login = ({ setPage, setMainPage, isLoggedIn, logIn }) => {
-    const authorization = e => {
-        e.preventDefault()
-        const { email, password } = e.target
-        logIn(email.value, password.value)
-    }
+  const authorization = e => {
+    e.preventDefault()
+    const { email, password } = e.target
+    logIn(email.value, password.value)
+  }
 
-    const login = () => !isLoggedIn ? (
+  const login = () => !isLoggedIn
+    ? (
             <>
                 <form onSubmit={authorization} className="form">
                     <Field
@@ -45,8 +46,8 @@ export const Login = ({ setPage, setMainPage, isLoggedIn, logIn }) => {
                     <button onClick={() => setPage('registration')} className="change-type__link">Регистрация</button>
                 </div>
             </>
-        ) :
-        <div className="btn-center">
+      )
+    : <div className="btn-center">
             <Button
                 text={'Войти'}
                 disabled={false}
@@ -55,7 +56,7 @@ export const Login = ({ setPage, setMainPage, isLoggedIn, logIn }) => {
             />
         </div>
 
-    return (
+  return (
         <div className="authorization">
             <div className="authorization__form">
                 <h1 className="authorization__title">Войти</h1>
@@ -63,7 +64,7 @@ export const Login = ({ setPage, setMainPage, isLoggedIn, logIn }) => {
                 {login()}
             </div>
         </div>
-    )
+  )
 }
 
 export const LoginWithData = withAuth(Login)
