@@ -4,9 +4,9 @@ import './styles/global.scss'
 import './styles/App.scss'
 
 import Auth from './pages/Auth/Auth'
-import { ProfileWithData } from './pages/Profile/Profile'
-import { MapWithData } from './pages/Map/Map'
-import { withAuth } from './components/authContext/AuthContext'
+import { Profile } from './pages/Profile/Profile'
+import { Map } from './pages/Map/Map'
+import { connect } from 'react-redux'
 
 function App ({ isLoggedIn }) {
   const [mainPage, setMainPage] = useState('Auth')
@@ -15,8 +15,8 @@ function App ({ isLoggedIn }) {
 
   const pages = {
     Auth: <Auth setCurrentPage={setCurrentPage} />,
-    Map: <MapWithData currentPage={mainPage} setCurrentPage={setCurrentPage} />,
-    Profile: <ProfileWithData currentPage={mainPage} setCurrentPage={setCurrentPage} />
+    Map: <Map currentPage={mainPage} setCurrentPage={setCurrentPage} />,
+    Profile: <Profile currentPage={mainPage} setCurrentPage={setCurrentPage} />
   }
 
   return (
@@ -26,4 +26,6 @@ function App ({ isLoggedIn }) {
   )
 }
 
-export default withAuth(App)
+export default connect(
+  state => ({ isLoggedIn: state.auth.isLoggedIn })
+)(App)

@@ -1,7 +1,9 @@
 import './style.scss'
 import Button from '../button/Button'
 import Field from '../field/Field'
-import { withAuth } from '../authContext/AuthContext'
+import { connect } from 'react-redux'
+import { logIn } from '../../actions'
+// import { withAuth } from '../authContext/AuthContext'
 
 export const Login = ({ setPage, setMainPage, isLoggedIn, logIn }) => {
   const authorization = e => {
@@ -67,4 +69,7 @@ export const Login = ({ setPage, setMainPage, isLoggedIn, logIn }) => {
   )
 }
 
-export const LoginWithData = withAuth(Login)
+export const LoginWithData = connect(
+  state => ({ isLoggedIn: state.auth.isLoggedIn }),
+  { logIn: logIn }
+)(Login)

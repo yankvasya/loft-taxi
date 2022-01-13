@@ -1,5 +1,6 @@
 import './style.scss'
-import { withAuth } from '../authContext/AuthContext'
+import { connect } from 'react-redux'
+import { logOut } from '../../actions'
 
 const Menu = ({ currentPage, setCurrentPage, logOut }) => {
   const pages =
@@ -36,4 +37,7 @@ const Menu = ({ currentPage, setCurrentPage, logOut }) => {
   )
 }
 
-export default withAuth(Menu)
+export default connect(
+  null,
+  { logOut }
+)(Menu)
