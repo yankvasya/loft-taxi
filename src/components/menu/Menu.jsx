@@ -10,7 +10,7 @@ const Menu = (props) => {
         [
           { title: 'Карта', name: 'Map', path: '/map' },
           { title: 'Профиль', name: 'Profile', path: '/profile' },
-          { title: 'Выйти', name: 'Auth', path: '/' }
+          { title: 'Выйти', name: 'Logout', path: '/' }
         ]
 
   return (
@@ -21,7 +21,7 @@ const Menu = (props) => {
                         <button
                             className={`menu__link ${pathname === path && 'active'}`}
                             disabled={false}
-                            onClick={() => title === 'Выйти' && props.logOut()}
+                            onClick={() => name === 'Logout' && props.logOut()}
                         >
                             {title}
                         </button>
