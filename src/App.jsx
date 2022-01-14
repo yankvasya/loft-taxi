@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { Routes, Route } from 'react-router-dom'
 
 import './styles/global.scss'
 import './styles/App.scss'
@@ -9,19 +9,13 @@ import { Map } from './pages/Map/Map'
 import { connect } from 'react-redux'
 
 function App ({ isLoggedIn }) {
-  const [mainPage, setMainPage] = useState('Auth')
-
-  const setCurrentPage = (page) => (isLoggedIn ? setMainPage(page) : setMainPage('Auth'))
-
-  const pages = {
-    Auth: <Auth setCurrentPage={setCurrentPage} />,
-    Map: <Map currentPage={mainPage} setCurrentPage={setCurrentPage} />,
-    Profile: <Profile currentPage={mainPage} setCurrentPage={setCurrentPage} />
-  }
-
   return (
     <div className="App">
-      {pages[mainPage]}
+      <Routes>
+        <Route exact path="/" element={<Auth />} />
+         <Route exact path="/map" element={<Map />} />
+         <Route exact path="/profile" element={<Profile />} />
+      </Routes>
     </div>
   )
 }
