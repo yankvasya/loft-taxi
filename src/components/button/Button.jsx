@@ -2,7 +2,7 @@ import './style.scss'
 
 import PropTypes from 'prop-types'
 
-const Button = ({ text, disabled, eventClick, type }) => {
+const Button = ({ text = 'button', disabled = false, eventClick, type = 'button' }) => {
   Button.propTypes = {
     text: PropTypes.string,
     disabled: PropTypes.bool,
@@ -23,7 +23,7 @@ const Button = ({ text, disabled, eventClick, type }) => {
             disabled={disabled}
             type={type}
         >
-            {text || 'button'}
+            {text}
         </button>
   )
 }

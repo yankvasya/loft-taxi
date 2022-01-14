@@ -10,6 +10,7 @@ export const auth = (state = initialState, action) => {
       return { isLoggedIn: true }
     }
     case LOG_OUT: {
+      console.log('logout')
       return { isLoggedIn: false }
     }
     default:

@@ -3,9 +3,10 @@ import Button from '../button/Button'
 import Field from '../field/Field'
 import { connect } from 'react-redux'
 import { authenticate } from '../../actions'
+import { Link } from 'react-router-dom'
 
 export const Login = (props) => {
-  const { setPage, setMainPage, isLoggedIn } = props
+  const { setPage, isLoggedIn } = props
   const authorization = e => {
     e.preventDefault()
     const { email, password } = e.target
@@ -50,12 +51,13 @@ export const Login = (props) => {
             </>
       )
     : <div className="btn-center">
-            <Button
-                text={'Войти'}
-                disabled={false}
-                type="button"
-                eventClick={() => setMainPage('Map')}
-            />
+          <Link to="/map" >
+              <Button
+                  text={'Войти'}
+                  disabled={false}
+                  type="button"
+              />
+          </Link>
         </div>
 
   return (

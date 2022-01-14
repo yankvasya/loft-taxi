@@ -1,36 +1,31 @@
 import './style.scss'
 import { connect } from 'react-redux'
 import { logOut } from '../../actions'
+import { Link, useLocation } from 'react-router-dom'
 
-const Menu = ({ currentPage, setCurrentPage, logOut }) => {
+const Menu = (props) => {
+  const { pathname } = useLocation()
+
   const pages =
         [
-          { title: 'Карта', name: 'Map' },
-          { title: 'Профиль', name: 'Profile' },
-          { title: 'Выйти', name: 'Auth' }
+          { title: 'Карта', name: 'Map', path: '/map' },
+          { title: 'Профиль', name: 'Profile', path: '/profile' },
+          { title: 'Выйти', name: 'Auth', path: '/' }
         ]
-
-  const goToPage = (e, page) => {
-    e.preventDefault()
-    setCurrentPage(page)
-  }
-
-  const logout = (e, page) => {
-    logOut()
-    goToPage(e, page)
-  }
 
   return (
         <ul className="menu">
-            {pages.map(({ name, title }) => (
+            {pages.map(({ name, title, path }) => (
                 <li className="menu__item" key={name}>
-                    <button
-                        className={`menu__link ${currentPage === name && 'active'}`}
-                        onClick={e => title === 'Выйти' ? logout(e, name) : goToPage(e, name)}
-                        disabled={currentPage === name}
-                    >
-                        {title}
-                    </button>
+                    <Link to={path} replace >
+                        <button
+                            className={`menu__link ${pathname === path && 'active'}`}
+                            disabled={false}
+                            onClick={() => title === 'Выйти' && props.logOut()}
+                        >
+                            {title}
+                        </button>
+                    </Link>
                 </li>
             ))}
         </ul>
