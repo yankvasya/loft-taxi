@@ -2,14 +2,14 @@ import './style.scss'
 import Button from '../button/Button'
 import Field from '../field/Field'
 import { connect } from 'react-redux'
-import { logIn } from '../../actions'
-// import { withAuth } from '../authContext/AuthContext'
+import { authenticate } from '../../actions'
 
-export const Login = ({ setPage, setMainPage, isLoggedIn, logIn }) => {
+export const Login = (props) => {
+  const { setPage, setMainPage, isLoggedIn } = props
   const authorization = e => {
     e.preventDefault()
     const { email, password } = e.target
-    logIn(email.value, password.value)
+    props.authenticate(email.value, password.value)
   }
 
   const login = () => !isLoggedIn
@@ -71,5 +71,5 @@ export const Login = ({ setPage, setMainPage, isLoggedIn, logIn }) => {
 
 export const LoginWithData = connect(
   state => ({ isLoggedIn: state.auth.isLoggedIn }),
-  { logIn: logIn }
+  { authenticate }
 )(Login)
