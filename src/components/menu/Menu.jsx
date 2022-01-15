@@ -6,6 +6,18 @@ import { Link, useLocation } from 'react-router-dom'
 const Menu = (props) => {
   const { pathname } = useLocation()
 
+  const handleClick = (name) => name === 'Logout' && logout()
+
+  const logout = () => {
+    removeLocalData()
+    props.logOut()
+  }
+
+  const removeLocalData = () => {
+    localStorage.removeItem('email')
+    localStorage.removeItem('password')
+  }
+
   const pages =
         [
           { title: 'Карта', name: 'Map', path: '/map' },
@@ -21,7 +33,7 @@ const Menu = (props) => {
                         <button
                             className={`menu__link ${pathname === path && 'active'}`}
                             disabled={false}
-                            onClick={() => name === 'Logout' && props.logOut()}
+                            onClick={() => handleClick(name)}
                         >
                             {title}
                         </button>

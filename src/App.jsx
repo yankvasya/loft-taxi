@@ -8,19 +8,28 @@ import { Profile } from './pages/Profile/Profile'
 import { Map } from './pages/Map/Map'
 import { connect } from 'react-redux'
 import PrivateRoute from './PrivateRoute'
+import { useEffect } from 'react'
+import { authenticate } from './actions'
 
-function App () {
+function App (props) {
+  useEffect(() => {
+    const email = localStorage.getItem('email')
+    const password = localStorage.getItem('password')
+    email && password && props.authenticate(email, password)
+  })
+
   return (
     <div className="App">
       <Routes>
-        <Route exact path="/" element={<Auth />} />
-        <Route path="/map" element={<PrivateRoute><Map /></PrivateRoute>} />}
-        <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>} />
+      <Route exact path="/" element={<Auth />} />
+      <Route path="/map" element={<PrivateRoute><Map /></PrivateRoute>} />}
+      <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>} />
       </Routes>
     </div>
   )
 }
 
 export default connect(
-  state => ({ isLoggedIn: state.auth.isLoggedIn })
+  state => ({ isLoggedIn: state.auth.isLoggedIn }),
+  { authenticate }
 )(App)

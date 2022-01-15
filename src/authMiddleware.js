@@ -5,8 +5,16 @@ export const authMiddleware = store => next => async action => {
   if (action.type === AUTHENTICATE) {
     const { email, password } = action.payload
     const success = await serverLogin(email, password)
-    success && store.dispatch(logIn())
+    if (success) {
+      setLocalStorage(email, password)
+      store.dispatch(logIn())
+    }
   } else {
     next(action)
   }
+}
+
+const setLocalStorage = (email, password) => {
+  localStorage.setItem('email', email)
+  localStorage.setItem('password', password)
 }
