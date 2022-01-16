@@ -13,8 +13,8 @@ import { authenticate } from './actions'
 
 function App (props) {
   useEffect(() => {
-    !props.isLoggedIn && props.authenticate()
-  })
+    props.authenticate()
+  }, [])
 
   return (
     <div className="App">
