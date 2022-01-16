@@ -13,9 +13,7 @@ import { authenticate } from './actions'
 
 function App (props) {
   useEffect(() => {
-    const email = localStorage.getItem('email')
-    const password = localStorage.getItem('password')
-    email && password && props.authenticate(email, password)
+    !props.isLoggedIn && props.authenticate()
   })
 
   return (
