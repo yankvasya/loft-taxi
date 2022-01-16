@@ -10,6 +10,8 @@ export const auth = (state = initialState, action) => {
       return { isLoggedIn: true }
     }
     case LOG_OUT: {
+      localStorage.removeItem('email')
+      localStorage.removeItem('password')
       return { isLoggedIn: false }
     }
     default:

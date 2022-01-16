@@ -8,15 +8,7 @@ const Menu = (props) => {
 
   const handleClick = (name) => name === 'Logout' && logout()
 
-  const logout = () => {
-    removeLocalData()
-    props.logOut()
-  }
-
-  const removeLocalData = () => {
-    localStorage.removeItem('email')
-    localStorage.removeItem('password')
-  }
+  const logout = () => props.logOut()
 
   const pages =
         [
