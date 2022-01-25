@@ -1,39 +1,42 @@
 import './style.scss'
-import { withAuth } from "../authContext/AuthContext";
+import { connect } from 'react-redux'
+import { logOut } from '../../actions'
+import { Link, useLocation } from 'react-router-dom'
 
-const Menu = ({currentPage, setCurrentPage, logOut}) => {
-    const pages =
+const Menu = (props) => {
+  const { pathname } = useLocation()
+
+  const handleClick = (name) => name === 'Logout' && logout()
+
+  const logout = () => props.logOut()
+
+  const pages =
         [
-            { title: 'Карта', name: 'Map' },
-            { title: 'Профиль', name: 'Profile' },
-            { title: 'Выйти', name: 'Auth' }
+          { title: 'Карта', name: 'Map', path: '/map' },
+          { title: 'Профиль', name: 'Profile', path: '/profile' },
+          { title: 'Выйти', name: 'Logout', path: '/' }
         ]
 
-    const goToPage = (e, page) => {
-        e.preventDefault()
-        setCurrentPage(page)
-    }
-
-    const logout = (e, page) => {
-        logOut()
-        goToPage(e, page)
-    }
-
-    return (
+  return (
         <ul className="menu">
-            {pages.map(({ name,title }) => (
+            {pages.map(({ name, title, path }) => (
                 <li className="menu__item" key={name}>
-                    <button
-                        className={`menu__link ${currentPage === name && 'active' }`}
-                        onClick={e => title === 'Выйти' ? logout(e, name) : goToPage(e, name)}
-                        disabled={currentPage === name}
-                    >
-                        {title}
-                    </button>
+                    <Link to={path} replace >
+                        <button
+                            className={`menu__link ${pathname === path && 'active'}`}
+                            disabled={false}
+                            onClick={() => handleClick(name)}
+                        >
+                            {title}
+                        </button>
+                    </Link>
                 </li>
             ))}
         </ul>
-    )
+  )
 }
 
-export default withAuth(Menu)
+export default connect(
+  null,
+  { logOut }
+)(Menu)

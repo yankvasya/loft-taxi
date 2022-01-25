@@ -1,16 +1,20 @@
 import './style.scss'
 import Button from '../button/Button'
 import Field from '../field/Field'
-import { withAuth } from '../authContext/AuthContext'
+import { connect } from 'react-redux'
+import { authenticate } from '../../actions'
+import { Link } from 'react-router-dom'
 
-export const Login = ({ setPage, setMainPage, isLoggedIn, logIn }) => {
-    const authorization = e => {
-        e.preventDefault()
-        const { email, password } = e.target
-        logIn(email.value, password.value)
-    }
+export const Login = (props) => {
+  const { setPage, isLoggedIn } = props
+  const authorization = e => {
+    e.preventDefault()
+    const { email, password } = e.target
+    props.authenticate(email.value, password.value)
+  }
 
-    const login = () => !isLoggedIn ? (
+  const login = () => !isLoggedIn
+    ? (
             <>
                 <form onSubmit={authorization} className="form">
                     <Field
@@ -45,17 +49,18 @@ export const Login = ({ setPage, setMainPage, isLoggedIn, logIn }) => {
                     <button onClick={() => setPage('registration')} className="change-type__link">Регистрация</button>
                 </div>
             </>
-        ) :
-        <div className="btn-center">
-            <Button
-                text={'Войти'}
-                disabled={false}
-                type="button"
-                eventClick={() => setMainPage('Map')}
-            />
+      )
+    : <div className="btn-center">
+          <Link to="/map" >
+              <Button
+                  text={'Войти'}
+                  disabled={false}
+                  type="button"
+              />
+          </Link>
         </div>
 
-    return (
+  return (
         <div className="authorization">
             <div className="authorization__form">
                 <h1 className="authorization__title">Войти</h1>
@@ -63,7 +68,10 @@ export const Login = ({ setPage, setMainPage, isLoggedIn, logIn }) => {
                 {login()}
             </div>
         </div>
-    )
+  )
 }
 
-export const LoginWithData = withAuth(Login)
+export const LoginWithData = connect(
+  state => ({ isLoggedIn: state.auth.isLoggedIn }),
+  { authenticate }
+)(Login)

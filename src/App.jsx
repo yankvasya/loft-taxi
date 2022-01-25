@@ -1,29 +1,33 @@
-import { useState } from 'react'
+import { Routes, Route } from 'react-router-dom'
 
 import './styles/global.scss'
 import './styles/App.scss'
 
 import Auth from './pages/Auth/Auth'
-import { ProfileWithData } from './pages/Profile/Profile'
-import { MapWithData } from './pages/Map/Map'
-import { withAuth } from './components/authContext/AuthContext'
+import { Profile } from './pages/Profile/Profile'
+import { Map } from './pages/Map/Map'
+import { connect } from 'react-redux'
+import PrivateRoute from './PrivateRoute'
+import { useEffect } from 'react'
+import { authenticate } from './actions'
 
-const App = ({ isLoggedIn }) => {
-    const [mainPage, setMainPage] = useState('Auth')
-
-    const setCurrentPage = page => isLoggedIn ? setMainPage(page) : setMainPage('Auth')
-
-    const pages = {
-        Auth: <Auth setCurrentPage={setCurrentPage} />,
-        Map: <MapWithData currentPage={mainPage} setCurrentPage={setCurrentPage} />,
-        Profile: <ProfileWithData currentPage={mainPage} setCurrentPage={setCurrentPage} />
-    }
+function App (props) {
+  useEffect(() => {
+    props.authenticate()
+  }, [])
 
   return (
     <div className="App">
-        {pages[mainPage]}
+      <Routes>
+      <Route exact path="/" element={<Auth />} />
+      <Route path="/map" element={<PrivateRoute><Map /></PrivateRoute>} />}
+      <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>} />
+      </Routes>
     </div>
-  );
+  )
 }
 
-export default withAuth(App);
+export default connect(
+  state => ({ isLoggedIn: state.auth.isLoggedIn }),
+  { authenticate }
+)(App)

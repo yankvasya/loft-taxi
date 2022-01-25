@@ -1,8 +1,7 @@
 import './style.scss'
 
 const Field = ({ currentId, text, placeholder, autocomplete, type }) => {
-
-    return (
+  return (
         <div className="field">
             <label
                 className="label"
@@ -19,7 +18,7 @@ const Field = ({ currentId, text, placeholder, autocomplete, type }) => {
                 placeholder={ placeholder }
             />
         </div>
-    )
+  )
 }
 
 export default Field
