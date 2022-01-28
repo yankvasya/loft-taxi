@@ -1,4 +1,6 @@
-import { logIn, AUTHENTICATE } from './actions'
+import { takeEvery, call, put } from 'redux-saga/effects'
+
+import { AUTHENTICATE, logIn } from './actions'
 import { serverLogin } from './api'
 
 const checkData = (payload) => payload.email && payload.password ? payload : getLocalStorage()
@@ -15,16 +17,15 @@ const setLocalStorage = (email, password) => {
   localStorage.setItem('password', password)
 }
 
-export const authMiddleware = store => next => async action => {
-  if (action.type === AUTHENTICATE) {
-    const { email, password } = checkData(action.payload)
-    const success = await serverLogin(email, password)
-
-    if (success) {
-      setLocalStorage(email, password)
-      store.dispatch(logIn())
-    }
-  } else {
-    next(action)
+export function * authenticateSaga (action) {
+  const { email, password } = checkData(action.payload)
+  const success = yield call(serverLogin, email, password)
+  if (success) {
+    setLocalStorage(email, password)
+    yield put(logIn())
   }
+}
+
+export function * authSaga () {
+  yield takeEvery(AUTHENTICATE, authenticateSaga)
 }
