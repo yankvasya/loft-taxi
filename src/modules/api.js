@@ -40,4 +40,4 @@ export const serverAddressList = async () =>
   instance.get('/addressList')
 
 export const serverRoute = async (address1, address2) =>
-  instance.get(`/route?address1=${address1}&address2=${address2} (LED)`)
+  instance.get(`/route?address1=${address1}&address2=${address2}`)
