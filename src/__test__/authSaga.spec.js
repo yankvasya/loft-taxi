@@ -1,9 +1,9 @@
-import { recordSaga } from './recordSaga'
-import { authenticateSaga } from './authSaga'
-import { authenticate } from './actions'
-import { serverLogin } from './api'
+import { recordSaga } from '../recordSaga'
+import { authenticateSaga } from '../modules/sagas/authSaga'
+import { authenticate } from '../actions'
+import { serverLogin } from '../modules/api'
 
-jest.mock('./api')
+jest.mock('../api')
 
 describe('authSaga test', () => {
   it('auth via api', async () => {

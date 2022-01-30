@@ -1,7 +1,7 @@
 import { takeEvery, call, put } from 'redux-saga/effects'
 
-import { AUTHENTICATE, logIn } from './actions'
-import { serverLogin } from './api'
+import { AUTHENTICATE, logIn } from '../../actions'
+import { serverLogin } from '../api'
 
 const checkData = (payload) => payload.email && payload.password ? payload : getLocalStorage()
 
@@ -19,8 +19,9 @@ const setLocalStorage = (email, password) => {
 
 export function * authenticateSaga (action) {
   const { email, password } = checkData(action.payload)
-  const success = yield call(serverLogin, email, password)
-  if (success) {
+  const { data } = yield call(serverLogin, email, password)
+
+  if (data.success) {
     setLocalStorage(email, password)
     yield put(logIn())
   }
