@@ -1,6 +1,6 @@
-import { recordSaga } from '../recordSaga'
+import { recordSaga } from '../modules/sagas/recordSaga'
 import { authenticateSaga } from '../modules/sagas/authSaga'
-import { authenticate } from '../actions'
+import { authenticate } from '../modules/actions'
 import { serverLogin } from '../modules/api'
 
 jest.mock('../api')
