@@ -1,18 +1,4 @@
 import axios from 'axios'
-//
-// export const serverLogin = async (email, password) =>
-//   fetch(
-//     'https://loft-taxi.glitch.me/auth',
-//     {
-//       method: 'POST',
-//       headers: {
-//         Accept: 'application/json',
-//         'Content-Type': 'application/json'
-//       },
-//       body: JSON.stringify({ email, password })
-//     }
-//   )
-//     .then(res => res.json()).then(({ success }) => success)
 
 const instance = axios.create({
   baseURL: 'https://loft-taxi.glitch.me',
@@ -33,8 +19,8 @@ export const serverPutCard = async (cardNumber, expiryDate, cardName, cvc, token
 
 // cardNumber: "0000 0000 0000 0000", expiryDate: "", cardName: "", cvc: "", token: AUTH_TOKEN
 
-export const serverGetCard = async (AUTH_TOKEN) =>
-  instance.get(`/card?token=${AUTH_TOKEN}`)
+export const serverGetCard = async (token) =>
+  instance.get(`/card?token=${token}`)
 
 export const serverAddressList = async () =>
   instance.get('/addressList')

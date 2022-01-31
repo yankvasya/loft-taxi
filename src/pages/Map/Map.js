@@ -2,7 +2,7 @@ import './style.scss'
 
 import Header from '../../components/header/Header'
 import MapBox from '../../components/mapbox/MapBox'
-import MapCard from '../../components/mapCard/MapCard'
+import { MapCardWithData } from '../../components/mapCard/MapCard'
 
 export const Map = ({ currentPage, setCurrentPage }) => {
   return (
@@ -10,7 +10,7 @@ export const Map = ({ currentPage, setCurrentPage }) => {
             <Header currentPage={currentPage} setCurrentPage={setCurrentPage} />
             <MapBox />
 
-            <MapCard />
+            <MapCardWithData />
         </div>
   )
 }

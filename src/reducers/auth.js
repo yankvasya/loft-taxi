@@ -1,17 +1,23 @@
-import { LOG_IN, LOG_OUT } from '../actions'
+import { AUTHENTICATE, LOG_IN, LOG_OUT } from '../modules/actions'
+import { removeLocalStorage, setLocalStorage } from '../modules/localStorage/index'
 
 const initialState = {
-  isLoggedIn: false
+  isLoggedIn: false,
+  token: ''
 }
 
 export const auth = (state = initialState, action) => {
   switch (action.type) {
+    case AUTHENTICATE: {
+      return state
+    }
     case LOG_IN: {
-      return { isLoggedIn: true }
+      const { email, password } = action.payload
+      setLocalStorage(email, password)
+      return { ...state, isLoggedIn: true, token: action.payload.token }
     }
     case LOG_OUT: {
-      localStorage.removeItem('email')
-      localStorage.removeItem('password')
+      removeLocalStorage()
       return { isLoggedIn: false }
     }
     default:

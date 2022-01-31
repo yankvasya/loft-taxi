@@ -1,5 +1,6 @@
 import './style.scss'
 
+import { connect } from 'react-redux'
 import Button from '../button/Button'
 
 import { ReactComponent as Arrow } from '../../assets/icons/arrow.svg'
@@ -7,78 +8,84 @@ import { ReactComponent as Arrow } from '../../assets/icons/arrow.svg'
 import Standard from '../../assets/img/standard.jpg'
 import Premium from '../../assets/img/premium.jpg'
 import Business from '../../assets/img/business.jpg'
+import { useState } from 'react'
+import { goRoute } from '../../modules/actions'
 
-const MapCard = () => {
+const MapCard = (props) => {
+  const [currentCar, changeCurrentCar] = useState(0)
+
+  const cars = [
+    { type: 'Стандарт', price: 150, img: Standard },
+    { type: 'Премиум', price: 250, img: Premium },
+    { type: 'Бизнес', price: 300, img: Business }
+  ]
+
+  const changeType = (number) => {
+    changeCurrentCar(number)
+  }
+
+  const routes = () =>
+    props.routes.map(route => (
+      <option className="address__option" value={route} key={route}>{route}</option>
+    ))
+
+  const submitForm = (event) => {
+    event.preventDefault()
+    const { address1, address2 } = event.target.elements
+
+    props.goRoute(address1.value, address2.value)
+  }
+
   return (
-    <form className="mapCard">
+    <form className="mapCard" onSubmit={submitForm}>
       <div className="addresses">
         <div className="address">
           <div className="icon" />
-          <select className="address__select">
-            <option className="address__option" value="Лесная поляна 34, п.8">Лесная поляна 34, п.8</option>
-            <option className="address__option" value="Березовая роща 146, п.14">Березовая роща 146, п.14</option>
-          </select>
+          <select name="address1" className="address__select">{routes()}</select>
 
           <button className="close" />
         </div>
 
         <div className="address">
           <Arrow />
-          <select className="address__select">
-            <option className="address__option" value="Лесная поляна 34, п.8">Лесная поляна 34, п.8</option>
-            <option className="address__option" value="Березовая роща 146, п.14">Березовая роща 146, п.14</option>
-          </select>
+          <select name="address2" className="address__select">{routes()}</select>
 
           <button className="close" />
         </div>
       </div>
 
       <div className="cars">
-        <label className="car current">
-          <h4 className="car__name">Стандарт</h4>
-          <h6 className="car__desc">Стоимость</h6>
-          <h5 className="car__price">150 Р</h5>
+        {cars.map(({ type, price, img }, npx) => (
+          <label className={`car ${npx === currentCar ? 'current' : ''}`} key={type}>
+            <h4 className="car__name">{type}</h4>
+            <h6 className="car__desc">Стоимость</h6>
+            <h5 className="car__price">{price} Р</h5>
 
-          <div className="car__img">
-            <img src={Standard} alt="Стандартная подача"/>
-          </div>
+            <div className="car__img">
+              <img src={img} alt={`${type} подача`}/>
+            </div>
 
-          <input name="car" id="standardCar" type="radio" defaultChecked />
-        </label>
-
-        <label className="car">
-          <h4 className="car__name">Премиум</h4>
-          <h6 className="car__desc">Стоимость</h6>
-          <h5 className="car__price">250 Р</h5>
-
-          <div className="car__img">
-            <img src={Premium} alt="Премиум подача"/>
-          </div>
-
-          <input name="car" id="premiumCar" type="radio"/>
-        </label>
-
-        <label className="car">
-          <h4 className="car__name">Бизнес</h4>
-          <h6 className="car__desc">Стоимость</h6>
-          <h5 className="car__price">300 Р</h5>
-
-          <div className="car__img">
-            <img src={Business} alt="Бизнес подача"/>
-          </div>
-
-          <input name="car" id="businessCar" type="radio"/>
-        </label>
+            <input
+              name="car"
+              type="radio"
+              value={type}
+              defaultChecked={npx === currentCar}
+              onChange={() => changeType(npx)}
+            />
+          </label>
+        ))}
       </div>
 
       <Button
         type="submit"
         text="Заказать"
         className="form__submit"
-        eventClick={e => e.preventDefault()}
       />
     </form>
   )
 }
 
-export default MapCard
+export const MapCardWithData = connect(
+  state => ({ routes: state.routes.routes }),
+  { goRoute }
+)(MapCard)
