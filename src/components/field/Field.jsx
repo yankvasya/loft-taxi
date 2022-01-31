@@ -1,6 +1,6 @@
 import './style.scss'
 
-const Field = ({ currentId, text, placeholder, autocomplete, type }) => {
+const Field = ({ currentId, text, placeholder, autocomplete, type, minLength, maxLength }) => {
   return (
         <div className="field">
             <label
@@ -16,6 +16,8 @@ const Field = ({ currentId, text, placeholder, autocomplete, type }) => {
                 name={ currentId }
                 id={ currentId }
                 placeholder={ placeholder }
+                maxLength={maxLength}
+                minLength={minLength}
             />
         </div>
   )

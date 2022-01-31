@@ -2,10 +2,32 @@ import './style.scss'
 import Button from '../button/Button'
 import Card from '../card/Card'
 import Field from '../field/Field'
+import { useState } from 'react'
 
 const ProfileCard = () => {
-  const saveProfileData = info => {
-    console.log('save', info)
+  const initialCard = {
+    cardNumber: '5545 2300 3432 4666',
+    expiryDate: '06/66',
+    cardName: '',
+    cvc: ''
+  }
+
+  const [cardData, changeCardData] = useState(initialCard)
+
+  const submitForm = event => {
+    event.preventDefault()
+    const data = {
+      cardNumber: event.target.elements.cardNumber.value,
+      expiryDate: '',
+      cardName: '',
+      cvc: '',
+      token: ''
+    }
+    console.log('save', data)
+  }
+
+  const cardChanged = event => {
+    changeCardData({ ...cardData, [event.target.name]: event.target.value })
   }
 
   return (
@@ -14,7 +36,7 @@ const ProfileCard = () => {
             <h3 className="profile__description">Введите платежные данные</h3>
 
             <div className="profile__data">
-                <form className="profile__form form">
+                <form className="profile__form form" onSubmit={submitForm} onInput={cardChanged}>
                     <Field
                         currentId="name"
                         text="Имя владельца"
@@ -24,11 +46,13 @@ const ProfileCard = () => {
                     />
 
                     <Field
-                        currentId="card-number"
+                        currentId="cardNumber"
                         text="Номер карты"
                         placeholder=""
                         autocomplete="card-number"
                         type="text"
+                        minLength="16"
+                        maxLength="16"
                     />
 
                     <div className="form__info">
@@ -38,6 +62,7 @@ const ProfileCard = () => {
                             placeholder=""
                             autocomplete="card-data"
                             type="text"
+                            maxLength="4"
                         />
 
                         <Field
@@ -46,6 +71,7 @@ const ProfileCard = () => {
                             placeholder=""
                             autocomplete="card-cvc"
                             type="text"
+                            maxLength="3"
                         />
                     </div>
                     <div className="form__submit">
@@ -53,12 +79,11 @@ const ProfileCard = () => {
                             type="submit"
                             text="Сохранить"
                             className="form__submit"
-                            eventClick={e => saveProfileData(e)}
                         />
                     </div>
                 </form>
 
-                <Card />
+                <Card cardNumber={cardData.cardNumber} expiryDate={cardData.expiryDate} />
             </div>
         </div>
   )
