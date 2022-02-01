@@ -1,7 +1,7 @@
 import { takeEvery, call, put } from 'redux-saga/effects'
 
-import { AUTHENTICATE, logIn, REGISTRATION } from '../actions'
-import { serverLogin } from '../api'
+import { AUTHENTICATE, getCard, logIn, REGISTRATION } from '../actions'
+import { serverLogin, serverRegister } from '../api'
 import { checkData } from '../localStorage'
 
 export function * authenticateSaga (action) {
@@ -10,13 +10,14 @@ export function * authenticateSaga (action) {
 
   if (data.success) {
     yield put(logIn(email, password, data.token))
+    yield put(getCard(data.token))
   }
 }
 
 export function * registrationSaga (action) {
   const { email, password, name, surname } = checkData(action.payload)
 
-  const { data } = yield call(serverLogin, email, password, name, surname)
+  const { data } = yield call(serverRegister, email, password, name, surname)
 
   if (data.success) {
     console.log(data)

@@ -1,6 +1,19 @@
 import './style.scss'
 
-const Field = ({ currentId, text, placeholder, autocomplete, type, minLength, maxLength }) => {
+const Field = (props) => {
+  const {
+    currentId,
+    text,
+    placeholder,
+    autocomplete,
+    minLength,
+    maxLength,
+    inputValue = '',
+    type = 'text',
+    pattern = null
+  } =
+    props
+
   return (
         <div className="field">
             <label
@@ -11,13 +24,15 @@ const Field = ({ currentId, text, placeholder, autocomplete, type, minLength, ma
             </label>
             <input
                 className="input"
-                type={ type }
                 autoComplete={ autocomplete }
                 name={ currentId }
                 id={ currentId }
                 placeholder={ placeholder }
                 maxLength={maxLength}
                 minLength={minLength}
+                defaultValue={inputValue}
+                typeof={type}
+                pattern={pattern}
             />
         </div>
   )

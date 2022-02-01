@@ -1,9 +1,11 @@
-import { AUTHENTICATE, LOG_IN, LOG_OUT } from '../modules/actions'
+import { AUTHENTICATE, LOG_IN, LOG_OUT, REGISTRATION } from '../modules/actions'
 import { removeLocalStorage, setLocalStorage } from '../modules/localStorage/index'
 
 const initialState = {
   isLoggedIn: false,
-  token: ''
+  token: '',
+  error: null,
+  loading: false
 }
 
 export const auth = (state = initialState, action) => {
@@ -12,6 +14,7 @@ export const auth = (state = initialState, action) => {
       return state
     }
     case LOG_IN: {
+      console.log(LOG_IN)
       const { email, password, token } = action.payload
       setLocalStorage(email, password)
       return { ...state, isLoggedIn: true, token }
@@ -19,6 +22,10 @@ export const auth = (state = initialState, action) => {
     case LOG_OUT: {
       removeLocalStorage()
       return { isLoggedIn: false }
+    }
+    case REGISTRATION: {
+      console.log(action)
+      return state
     }
     default:
       return state
