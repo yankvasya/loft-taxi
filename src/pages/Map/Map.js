@@ -5,6 +5,7 @@ import { MapBox } from '../../components/mapbox/MapBox'
 import { MapCardWithData } from '../../components/mapCard/MapCard'
 import { connect } from 'react-redux'
 import { NewOrder } from '../../components/newOrder/NewOrder'
+import { NeedCard } from '../../components/needCard/NeedCard'
 
 const MapNoData = (props) => {
   const { currentPage, setCurrentPage, card } = props
@@ -14,7 +15,7 @@ const MapNoData = (props) => {
       ? (<NewOrder />)
       : card
         ? (<MapCardWithData />)
-        : (<></>)
+        : (<NeedCard />)
 
   return (
         <div className="page">

@@ -1,0 +1,33 @@
+.need-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+
+  position: absolute;
+  left: 20px;
+  top: 120px;
+
+  min-width: 486px;
+  padding: 39px 41px;
+
+  background: #FFFFFF;
+  box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+
+  &__title {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 42px;
+    color: #000000;
+  }
+
+  &__desc {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+    color: #7B7B7B;
+  }
+}
