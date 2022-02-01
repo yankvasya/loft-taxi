@@ -11,12 +11,12 @@ export function * getCardSaga () {
 }
 
 export function * putCardSaga (action) {
-  const { data } = yield call(serverPutCard)
+  const { cardNumber, expiryDate, cardName, cvc, token } = action.payload
+  const { data } = yield call(serverPutCard, cardNumber, expiryDate, cardName, cvc, token)
 
   if (data.success) {
-    yield put(saveCard())
+    yield put(saveCard(cardNumber, expiryDate, cardName, cvc, token))
   }
-  console.log(data)
 }
 
 export function * cardSaga () {

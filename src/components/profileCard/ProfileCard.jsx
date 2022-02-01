@@ -4,8 +4,17 @@ import Card from '../card/Card'
 import Field from '../field/Field'
 import { useState } from 'react'
 import { connect } from 'react-redux'
+import { authenticate, putCard } from '../../modules/actions'
 
-const ProfileCard = ({ cardNumber, expiryDate, cardName, cvc, token = '' }) => {
+const ProfileCard = (props) => {
+  const {
+    cardNumber,
+    expiryDate,
+    cardName,
+    cvc,
+    token = ''
+  } = props
+
   const initialCard = {
     cardNumber,
     expiryDate,
@@ -19,8 +28,6 @@ const ProfileCard = ({ cardNumber, expiryDate, cardName, cvc, token = '' }) => {
     event.preventDefault()
     const form = event.target.elements
 
-    console.log(form)
-
     const data = {
       cardNumber: form.cardNumber.value,
       expiryDate: form.expiryDate.value,
@@ -28,7 +35,7 @@ const ProfileCard = ({ cardNumber, expiryDate, cardName, cvc, token = '' }) => {
       cvc: form.cvc.value,
       token
     }
-    console.log('save', data)
+    props.putCard(data.cardNumber, data.expiryDate, data.cardName, data.cvc, token)
   }
 
   const cardChanged = event => {
@@ -56,9 +63,9 @@ const ProfileCard = ({ cardNumber, expiryDate, cardName, cvc, token = '' }) => {
                         placeholder=""
                         autocomplete="cardNumber"
                         type="numeric"
-                        minLength="20"
-                        maxLength="20"
-                        pattern={/.{1,4}/g}
+                        minLength="16"
+                        maxLength="19"
+                        // pattern={/[^0-9]/}
                         inputValue={cardNumber}
 
                     />
@@ -70,7 +77,8 @@ const ProfileCard = ({ cardNumber, expiryDate, cardName, cvc, token = '' }) => {
                             placeholder=""
                             autocomplete="expiryDate"
                             type="numeric"
-                            maxLength="4"
+                            minLength="5"
+                            maxLength="5"
                             inputValue={expiryDate}
                         />
 
@@ -107,5 +115,6 @@ export const ProfileCardWithData = connect(
       cardName: state.card.cardName,
       cvc: state.card.cvc,
       token: state.auth.token
-    })
+    }),
+  { putCard }
 )(ProfileCard)
