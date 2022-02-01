@@ -3,8 +3,8 @@ import { takeEvery, call, put } from 'redux-saga/effects'
 import { GET_CARD, PUT_CARD, saveCard } from '../actions'
 import { serverGetCard, serverPutCard } from '../api'
 
-export function * getCardSaga () {
-  const { data } = yield call(serverGetCard)
+export function * getCardSaga (action) {
+  const { data } = yield call(serverGetCard, action.payload.token)
   const { cardNumber, expiryDate, cardName, cvc, id } = data
 
   yield put(saveCard(cardNumber, expiryDate, cardName, cvc, id))
