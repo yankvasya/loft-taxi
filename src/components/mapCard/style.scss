@@ -29,6 +29,10 @@
       align-items: center;
       gap: 16px;
 
+      .none {
+        display: none;
+      }
+
       &:not(&:first-child) {
         border-top: 1px solid #E0E0E0
       }

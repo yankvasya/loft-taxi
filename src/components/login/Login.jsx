@@ -23,6 +23,7 @@ export const Login = (props) => {
                         placeholder="mail@mail.ru"
                         autocomplete="email"
                         type="text"
+                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                     />
 
                     <Field

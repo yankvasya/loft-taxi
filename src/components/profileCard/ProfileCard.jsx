@@ -4,7 +4,7 @@ import Card from '../card/Card'
 import Field from '../field/Field'
 import { useState } from 'react'
 import { connect } from 'react-redux'
-import { authenticate, putCard } from '../../modules/actions'
+import { putCard } from '../../modules/actions'
 
 const ProfileCard = (props) => {
   const {
@@ -65,7 +65,6 @@ const ProfileCard = (props) => {
                         type="numeric"
                         minLength="16"
                         maxLength="19"
-                        // pattern={/[^0-9]/}
                         inputValue={cardNumber}
 
                     />

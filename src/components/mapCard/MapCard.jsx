@@ -8,11 +8,16 @@ import { ReactComponent as Arrow } from '../../assets/icons/arrow.svg'
 import Standard from '../../assets/img/standard.jpg'
 import Premium from '../../assets/img/premium.jpg'
 import Business from '../../assets/img/business.jpg'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { goRoute } from '../../modules/actions'
 
 const MapCard = (props) => {
   const [currentCar, changeCurrentCar] = useState(0)
+  const [currentAddresses, changeCurrentAddresses] = useState({ address1: '', address2: '' })
+
+  useEffect(() => {
+    changeCurrentAddresses({ address1: props.routes[0], address2: props.routes[1] })
+  }, [])
 
   const cars = [
     { type: 'Стандарт', price: 150, img: Standard },
@@ -24,10 +29,17 @@ const MapCard = (props) => {
     changeCurrentCar(number)
   }
 
-  const routes = () =>
-    props.routes.map(route => (
-      <option className="address__option" value={route} key={route}>{route}</option>
-    ))
+  const routes = (another) =>
+    props.routes.filter(route => route !== currentAddresses[another])
+      .map(route => (
+      <option
+        className="address__option"
+        value={route}
+        key={route}
+      >
+        {route}
+      </option>
+      ))
 
   const submitForm = (event) => {
     event.preventDefault()
@@ -36,19 +48,35 @@ const MapCard = (props) => {
     props.goRoute(address1.value, address2.value)
   }
 
+  const addressChanged = ({ target }) => {
+    changeCurrentAddresses({ ...currentAddresses, [target.name]: target.value })
+  }
+
   return (
     <form className="mapCard" onSubmit={submitForm}>
       <div className="addresses">
         <div className="address">
           <div className="icon" />
-          <select name="address1" className="address__select">{routes()}</select>
+          <select
+            name="address1"
+            className="address__select"
+            onChange={addressChanged}
+          >
+            {routes('address2')}
+          </select>
 
           <button className="close" />
         </div>
 
         <div className="address">
           <Arrow />
-          <select name="address2" className="address__select">{routes()}</select>
+          <select
+            name="address2"
+            className="address__select"
+            onChange={addressChanged}
+          >
+            {routes('address1')}
+          </select>
 
           <button className="close" />
         </div>
