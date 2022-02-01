@@ -1,4 +1,4 @@
-import { CAN_BE_ROUTE, GET_ROUTES, GO_ROUTE } from '../modules/actions'
+import { CAN_BE_ROUTE, DELETE_ROUTE, GET_ROUTES, GO_ROUTE } from '../modules/actions'
 
 const initialState = {
   routes: [],
@@ -24,6 +24,10 @@ export const routes = (state = initialState, action) => {
       const { route } = action.payload
       console.log(state)
       return { ...state, route, loading: false, error: null }
+    }
+    case DELETE_ROUTE: {
+      console.log(action.type)
+      return { ...state, route: null }
     }
     default:
       return state

@@ -2,8 +2,10 @@ import mapboxgl from 'mapbox-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import './style.scss'
 import { useEffect, useRef } from 'react'
+import { connect } from 'react-redux'
+import { drawRoute } from '../../modules/mapRoute'
 
-const MapBox = () => {
+const MapBoxNoData = (props) => {
   const mapContainer = useRef()
   let map = null
 
@@ -16,19 +18,22 @@ const MapBox = () => {
       style: 'mapbox://styles/mapbox/streets-v11',
       center: [30.29, 59.98],
       zoom: 13
-      // 59.98977,30.2886061,13.5
     })
 
-    return () => {
-      map.remove()
+    if (props.route && map !== null) {
+      setTimeout(() => {
+        drawRoute(map, props.route)
+      }, 666)
     }
-  }, [])
+  })
 
   return (
-        <div className="map-wrapper">
-            <div data-testid="map" className="map" ref={ mapContainer } />
-        </div>
+    <div className="map-wrapper">
+      <div data-testid="map" className="map" ref={ mapContainer } />
+    </div>
   )
 }
 
-export default MapBox
+export const MapBox = connect(
+  state => ({ route: state.routes.route })
+)(MapBoxNoData)

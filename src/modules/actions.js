@@ -8,6 +8,7 @@ export const CAN_BE_ROUTE = 'CAN_BE_ROUTE'
 export const PUT_CARD = 'PUT_CARD'
 export const GET_CARD = 'GET_CARD'
 export const SAVE_CARD = 'SAVE_CARD'
+export const DELETE_ROUTE = 'DELETE_ROUTE'
 
 export const logIn = (email, password, token) => ({ type: LOG_IN, payload: { email, password, token } })
 export const logOut = () => ({ type: LOG_OUT })
@@ -22,3 +23,4 @@ export const registration = (email, password, name, surname) =>
 export const saveCard = (cardNumber, expiryDate, cardName, cvc, token) =>
   ({ type: SAVE_CARD, payload: { cardNumber, expiryDate, cardName, cvc, token } })
 export const canBeRoute = (route) => ({ type: CAN_BE_ROUTE, payload: { route } })
+export const deleteRoute = () => ({ type: DELETE_ROUTE })
