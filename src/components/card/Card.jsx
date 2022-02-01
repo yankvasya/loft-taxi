@@ -5,8 +5,8 @@ import { ReactComponent as Chip } from '../../assets/icons/chip.svg'
 import { ReactComponent as Ellipse } from '../../assets/icons/ellipse.svg'
 
 const Card = ({ cardNumber, expiryDate }) => {
-  const slicedCardNumber = () => cardNumber?.split(' ').map(numb => (
-    <span key={numb}>{numb}</span>
+  const slicedCardNumber = () => cardNumber?.split(' ').map((numb, npx) => (
+    <span key={npx} >{numb}</span>
   ))
 
   return (

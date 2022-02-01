@@ -3,25 +3,30 @@ import Button from '../button/Button'
 import Card from '../card/Card'
 import Field from '../field/Field'
 import { useState } from 'react'
+import { connect } from 'react-redux'
 
-const ProfileCard = () => {
+const ProfileCard = ({ cardNumber, expiryDate, cardName, cvc, token = '' }) => {
   const initialCard = {
-    cardNumber: '5545 2300 3432 4666',
-    expiryDate: '06/66',
-    cardName: '',
-    cvc: ''
+    cardNumber,
+    expiryDate,
+    cardName,
+    cvc
   }
 
   const [cardData, changeCardData] = useState(initialCard)
 
   const submitForm = event => {
     event.preventDefault()
+    const form = event.target.elements
+
+    console.log(form)
+
     const data = {
-      cardNumber: event.target.elements.cardNumber.value,
-      expiryDate: '',
-      cardName: '',
-      cvc: '',
-      token: ''
+      cardNumber: form.cardNumber.value,
+      expiryDate: form.expiryDate.value,
+      cardName: form.cardName.value,
+      cvc: form.cvc.value,
+      token
     }
     console.log('save', data)
   }
@@ -38,40 +43,45 @@ const ProfileCard = () => {
             <div className="profile__data">
                 <form className="profile__form form" onSubmit={submitForm} onInput={cardChanged}>
                     <Field
-                        currentId="name"
+                        currentId="cardName"
                         text="Имя владельца"
                         placeholder=""
-                        autocomplete="name"
-                        type="text"
+                        autocomplete="cardName"
+                        inputValue={cardName}
                     />
 
                     <Field
                         currentId="cardNumber"
                         text="Номер карты"
                         placeholder=""
-                        autocomplete="card-number"
-                        type="text"
-                        minLength="16"
-                        maxLength="16"
+                        autocomplete="cardNumber"
+                        type="numeric"
+                        minLength="20"
+                        maxLength="20"
+                        pattern={/.{1,4}/g}
+                        inputValue={cardNumber}
+
                     />
 
                     <div className="form__info">
                         <Field
-                            currentId="card-data"
+                            currentId="expiryDate"
                             text="MM/YY"
                             placeholder=""
-                            autocomplete="card-data"
-                            type="text"
+                            autocomplete="expiryDate"
+                            type="numeric"
                             maxLength="4"
+                            inputValue={expiryDate}
                         />
 
                         <Field
-                            currentId="card-cvc"
+                            currentId="cvc"
                             text="CVC"
                             placeholder=""
-                            autocomplete="card-cvc"
-                            type="text"
+                            autocomplete="cvc"
+                            type="numeric"
                             maxLength="3"
+                            inputValue={cvc}
                         />
                     </div>
                     <div className="form__submit">
@@ -83,10 +93,19 @@ const ProfileCard = () => {
                     </div>
                 </form>
 
-                <Card cardNumber={cardData.cardNumber} expiryDate={cardData.expiryDate} />
+                <Card cardNumber={cardNumber} expiryDate={expiryDate} />
             </div>
         </div>
   )
 }
 
-export default ProfileCard
+export const ProfileCardWithData = connect(
+  state =>
+    ({
+      cardNumber: state.card.cardNumber,
+      expiryDate: state.card.expiryDate,
+      cardName: state.card.cardName,
+      cvc: state.card.cvc,
+      token: state.auth.token
+    })
+)(ProfileCard)

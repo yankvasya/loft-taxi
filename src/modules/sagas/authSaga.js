@@ -20,8 +20,8 @@ export function * registrationSaga (action) {
   const { data } = yield call(serverRegister, email, password, name, surname)
 
   if (data.success) {
-    console.log(data)
     yield put(logIn(email, password, data.token))
+    yield put(getCard(data.token))
   }
 }
 

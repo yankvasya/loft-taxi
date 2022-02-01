@@ -5,10 +5,9 @@ import { serverGetCard, serverPutCard } from '../api'
 
 export function * getCardSaga () {
   const { data } = yield call(serverGetCard)
+  const { cardNumber, expiryDate, cardName, cvc, id } = data
 
-  console.log(data)
-
-  yield put(saveCard(data.id))
+  yield put(saveCard(cardNumber, expiryDate, cardName, cvc, id))
 }
 
 export function * putCardSaga (action) {
