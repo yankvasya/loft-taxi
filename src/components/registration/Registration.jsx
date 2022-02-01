@@ -10,9 +10,9 @@ const Registration = (props) => {
 
   const registration = e => {
     e.preventDefault()
-    const { email, password } = e.target
-    console.log(e)
-    // props.registration(email.value, password.value)
+    const { email, password, fullName } = e.target.elements
+    const [name, surname] = fullName.value.split(' ')
+    props.registration(email.value, password.value, name, surname)
   }
 
   const registr = () => !isLoggedIn
@@ -28,7 +28,7 @@ const Registration = (props) => {
          />
 
          <Field
-           currentId="firstname"
+           currentId="fullName"
            text="Как вас зовут?*"
            placeholder="Петр Александрович"
            autocomplete="name"

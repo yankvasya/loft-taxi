@@ -12,9 +12,9 @@ export const auth = (state = initialState, action) => {
       return state
     }
     case LOG_IN: {
-      const { email, password } = action.payload
+      const { email, password, token } = action.payload
       setLocalStorage(email, password)
-      return { ...state, isLoggedIn: true, token: action.payload.token }
+      return { ...state, isLoggedIn: true, token }
     }
     case LOG_OUT: {
       removeLocalStorage()
