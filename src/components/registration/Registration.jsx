@@ -1,46 +1,79 @@
 import './style.scss'
 import Button from '../button/Button'
 import Field from '../field/Field'
+import { connect } from 'react-redux'
+import { registration } from '../../modules/actions'
+import { Link } from 'react-router-dom'
 
-const Registration = ({ setPage }) => (
-    <div className="authorization">
-        <div className="authorization__form">
-            <h1 className="registration__title">Регистрация</h1>
+const Registration = (props) => {
+  const { setPage, isLoggedIn } = props
 
-            <form className="form">
-                <Field
-                    currentId="email"
-                    text="Email"
-                    placeholder="mail@mail.ru"
-                    autocomplete="email"
-                    type="text"
-                />
+  const registration = e => {
+    e.preventDefault()
+    const { email, password } = e.target
+    console.log(e)
+    // props.registration(email.value, password.value)
+  }
 
-                <Field
-                    currentId="firstname"
-                    text="Как вас зовут?*"
-                    placeholder="Петр Александрович"
-                    autocomplete="name"
-                    type="text"
-                />
+  const registr = () => !isLoggedIn
+    ? (
+     <>
+       <form className="form" onSubmit={registration}>
+         <Field
+           currentId="email"
+           text="Email"
+           placeholder="mail@mail.ru"
+           autocomplete="email"
+           type="text"
+         />
 
-                <Field
-                    currentId="password"
-                    text="Придумайте пароль*"
-                    placeholder="*************"
-                    autocomplete="password"
-                    type="password"
-                />
+         <Field
+           currentId="firstname"
+           text="Как вас зовут?*"
+           placeholder="Петр Александрович"
+           autocomplete="name"
+           type="text"
+         />
 
-                <Button text="Зарегистрироваться" disabled={false} eventClick={() => setPage('login')}/>
-            </form>
+         <Field
+           currentId="password"
+           text="Придумайте пароль*"
+           placeholder="*************"
+           autocomplete="password"
+           type="password"
+         />
 
-            <div className="change-type">
-                <h4 className="change-type__title">Уже зарегистрированы?</h4>
-                <button onClick={() => setPage('login')} className="change-type__link">Войти</button>
-            </div>
-        </div>
+         <Button text="Зарегистрироваться" type="submit" disabled={false} />
+       </form>
+
+       <div className="change-type">
+         <h4 className="change-type__title">Уже зарегистрированы?</h4>
+         <button onClick={() => setPage('login')} className="change-type__link">Войти</button>
+       </div>
+     </>
+      )
+    : <div className="btn-center">
+      <Link to="/map" >
+        <Button
+          text={'Войти'}
+          disabled={false}
+          type="button"
+        />
+      </Link>
     </div>
-)
 
-export default Registration
+  return (
+    <div className="authorization">
+      <div className="authorization__form">
+        <h1 className="registration__title">{isLoggedIn ? 'Войти' : 'Регистрация'}</h1>
+
+        {registr()}
+      </div>
+    </div>
+  )
+}
+
+export const RegistrationWithData = connect(
+  state => ({ isLoggedIn: state.auth.isLoggedIn }),
+  { registration }
+)(Registration)

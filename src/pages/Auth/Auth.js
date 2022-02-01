@@ -3,13 +3,13 @@ import './style.scss'
 import { useState } from 'react'
 import { LoginWithData } from '../../components/login/Login'
 import Aside from '../../components/aside/Aside'
-import Registration from '../../components/registration/Registration'
+import { RegistrationWithData } from '../../components/registration/Registration'
 
 function Auth () {
   const [page, setPage] = useState('login')
   const pages = {
     login: <LoginWithData page={page} setPage={setPage} />,
-    registration: <Registration page={page} setPage={setPage} />
+    registration: <RegistrationWithData page={page} setPage={setPage} />
   }
 
   const currentPage = () => pages[page]
