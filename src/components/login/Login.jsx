@@ -2,7 +2,7 @@ import './style.scss'
 import Button from '../button/Button'
 import Field from '../field/Field'
 import { connect } from 'react-redux'
-import { authenticate } from '../../actions'
+import { authenticate } from '../../modules/actions'
 import { Link } from 'react-router-dom'
 
 export const Login = (props) => {
@@ -23,6 +23,7 @@ export const Login = (props) => {
                         placeholder="mail@mail.ru"
                         autocomplete="email"
                         type="text"
+                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                     />
 
                     <Field

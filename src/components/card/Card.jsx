@@ -4,20 +4,21 @@ import { ReactComponent as Logo } from '../../assets/logo/logo.svg'
 import { ReactComponent as Chip } from '../../assets/icons/chip.svg'
 import { ReactComponent as Ellipse } from '../../assets/icons/ellipse.svg'
 
-const Card = () => {
+const Card = ({ cardNumber, expiryDate }) => {
+  const slicedCardNumber = () => cardNumber?.split(' ').map((numb, npx) => (
+    <span key={npx} >{numb}</span>
+  ))
+
   return (
         <div className="card">
             <div className="card__row">
                 <Logo className="card__logo" />
                 <div className="card__data">
-                    05/08
+                  {expiryDate}
                 </div>
             </div>
             <div className="card__number">
-                <span>5545</span>
-                <span>2300</span>
-                <span>3432</span>
-                <span>4521</span>
+              {slicedCardNumber()}
             </div>
             <div className="card__row">
                 <Chip className="card__chip" />

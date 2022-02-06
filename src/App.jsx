@@ -7,9 +7,9 @@ import Auth from './pages/Auth/Auth'
 import { Profile } from './pages/Profile/Profile'
 import { Map } from './pages/Map/Map'
 import { connect } from 'react-redux'
-import PrivateRoute from './PrivateRoute'
+import PrivateRoute from './modules/routes/PrivateRoute'
 import { useEffect } from 'react'
-import { authenticate } from './actions'
+import { authenticate } from './modules/actions'
 
 function App (props) {
   useEffect(() => {

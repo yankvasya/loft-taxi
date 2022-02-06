@@ -1,6 +1,6 @@
 import './style.scss'
 import { connect } from 'react-redux'
-import { logOut } from '../../actions'
+import { logOut } from '../../modules/actions'
 import { Link, useLocation } from 'react-router-dom'
 
 const Menu = (props) => {
