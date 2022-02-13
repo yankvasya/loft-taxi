@@ -2,18 +2,23 @@ import './style.scss'
 import Button from '../button/Button'
 import Field from '../field/Field'
 import { connect } from 'react-redux'
-import { registration } from '../../modules/actions'
+import { authError, registration } from '../../modules/actions'
 import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
+import { useEffect } from 'react'
 
 const Registration = (props) => {
   const { register, handleSubmit, formState: { errors } } = useForm()
-  const { setPage, isLoggedIn } = props
+  const { setPage, isLoggedIn, error, loading } = props
 
   const registration = ({ email, password, fullName }) => {
     const [name, surname] = fullName.split(' ')
     props.registration(email, password, name, surname)
   }
+
+  useEffect(() => {
+    props.authError(null)
+  }, [])
 
   const registr = () => !isLoggedIn
     ? (
@@ -22,6 +27,7 @@ const Registration = (props) => {
          <Field
              register={register}
              errors={errors}
+             error="Введите корректный адрес почты"
              label="email"
              text="Email*"
              required
@@ -34,11 +40,12 @@ const Registration = (props) => {
          <Field
              register={register}
              errors={errors}
+             error="Введите полное имя и фамилию"
              label="fullName"
              text="Как вас зовут?*"
              required
              maxLength="30"
-             defaultValue="123123"
+             defaultValue="Иван Петров"
              type="text"
              autoComplete="fullName"
              pattern={/[А-я]{3,9} [А-я]{3,9}|[A-z]{3,9} [A-z]{3,9}/}
@@ -47,16 +54,29 @@ const Registration = (props) => {
          <Field
              register={register}
              errors={errors}
+             error="Пароль должен быть не меньше 5 символов"
              label="password"
              text="Придумайте пароль*"
              required
+             minLength="5"
              maxLength="30"
-             defaultValue="123123"
+             defaultValue="12345"
              type="password"
              autoComplete="password"
          />
 
-         <Button text="Зарегистрироваться" type="submit"/>
+         <Button
+             text="Зарегистрироваться"
+             type="submit"
+             disabled={loading}
+         />
+
+         {error &&
+             (
+                 <span className="error" >
+                  {error}
+                </span>
+             )}
        </form>
 
        <div className="change-type">
@@ -69,7 +89,6 @@ const Registration = (props) => {
       <Link to="/map" >
         <Button
           text={'Войти'}
-          disabled={false}
           type="button"
         />
       </Link>
@@ -89,7 +108,8 @@ const Registration = (props) => {
 export const RegistrationWithData = connect(
   state => ({
     isLoggedIn: state.auth.isLoggedIn,
-    loading: state.auth.loading
+    loading: state.auth.loading,
+    error: state.auth.error
   }),
-  { registration }
+  { registration, authError }
 )(Registration)

@@ -10,11 +10,12 @@ import { connect } from 'react-redux'
 import PrivateRoute from './modules/routes/PrivateRoute'
 import { useEffect } from 'react'
 import { authenticate } from './modules/actions'
+import { getLocalStorage } from './modules/localStorage'
 
 function App (props) {
   useEffect(() => {
-    props.authenticate()
-    console.log('попытка логина')
+    const data = getLocalStorage()
+    data && props.authenticate(data.email, data.password)
   }, [props.authenticate])
 
   return (

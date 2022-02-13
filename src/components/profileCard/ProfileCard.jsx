@@ -5,14 +5,19 @@ import Field from '../field/Field'
 import { useState } from 'react'
 import { connect } from 'react-redux'
 import { putCard } from '../../modules/actions'
+import { useForm } from 'react-hook-form'
 
 const ProfileCard = (props) => {
+  const { register, handleSubmit, formState: { errors } } = useForm()
+
   const {
     cardNumber,
     expiryDate,
     cardName,
     cvc,
-    token = ''
+    token = '',
+    loading,
+    error
   } = props
 
   const initialCard = {
@@ -24,19 +29,8 @@ const ProfileCard = (props) => {
 
   const [cardData, changeCardData] = useState(initialCard)
 
-  const submitForm = event => {
-    event.preventDefault()
-    const form = event.target.elements
-
-    const data = {
-      cardNumber: form.cardNumber.value,
-      expiryDate: form.expiryDate.value,
-      cardName: form.cardName.value,
-      cvc: form.cvc.value,
-      token
-    }
-    props.putCard(data.cardNumber, data.expiryDate, data.cardName, data.cvc, token)
-  }
+  const submitForm = ({ cardName, cardNumber, expiryDate, cvc }) =>
+    props.putCard(cardNumber, expiryDate, cardName, cvc, token)
 
   const cardChanged = event => {
     changeCardData({ ...cardData, [event.target.name]: event.target.value })
@@ -48,47 +42,61 @@ const ProfileCard = (props) => {
             <h3 className="profile__description">Введите платежные данные</h3>
 
             <div className="profile__data">
-                <form className="profile__form form" onSubmit={submitForm} onInput={cardChanged}>
+                <form className="profile__form form" onSubmit={handleSubmit(submitForm)} onInput={cardChanged}>
                     <Field
-                        currentId="cardName"
+                        register={register}
+                        errors={errors}
+                        error="Введите имя владельца карты"
+                        label="cardName"
                         text="Имя владельца"
-                        placeholder=""
-                        autocomplete="cardName"
-                        inputValue={cardName}
+                        required
+                        defaultValue="Ivan Ivanov"
+                        type="text"
+                        autoComplete="name"
+                        pattern={/[A-z]{3,9} [A-z]{3,9}/}
                     />
 
                     <Field
-                        currentId="cardNumber"
+                        register={register}
+                        errors={errors}
+                        error="Введите номер карты"
+                        label="cardNumber"
                         text="Номер карты"
-                        placeholder=""
-                        autocomplete="cardNumber"
+                        required
+                        defaultValue="1111 2222 3333 4444"
                         type="numeric"
-                        minLength="16"
-                        maxLength="19"
-                        inputValue={cardNumber}
-
+                        autoComplete="cardNumber"
+                        pattern={
+                          /([0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4})|([0-9]{16})/
+                        }
                     />
 
                     <div className="form__info">
                         <Field
-                            currentId="expiryDate"
+                            register={register}
+                            errors={errors}
+                            error="Введите срок действия карты"
+                            label="expiryDate"
                             text="MM/YY"
-                            placeholder=""
-                            autocomplete="expiryDate"
+                            required
+                            defaultValue="12/12"
                             type="numeric"
-                            minLength="5"
-                            maxLength="5"
-                            inputValue={expiryDate}
+                            autoComplete="expiryDate"
+                            pattern={/[0-9]{2}\/[0-9]{2}/}
                         />
 
                         <Field
-                            currentId="cvc"
+                            register={register}
+                            errors={errors}
+                            error="Введите CVC"
+                            label="cvc"
                             text="CVC"
-                            placeholder=""
-                            autocomplete="cvc"
-                            type="numeric"
+                            required
+                            minLength="3"
                             maxLength="3"
-                            inputValue={cvc}
+                            defaultValue="111"
+                            type="numeric"
+                            autoComplete="cvc"
                         />
                     </div>
                     <div className="form__submit">
@@ -96,8 +104,15 @@ const ProfileCard = (props) => {
                             type="submit"
                             text="Сохранить"
                             className="form__submit"
+                            disabled={loading}
                         />
                     </div>
+
+                  {error && (
+                    <span className="error">
+                      {error}
+                    </span>
+                  )}
                 </form>
 
                 <Card cardNumber={cardNumber} expiryDate={expiryDate} />
@@ -113,7 +128,9 @@ export const ProfileCardWithData = connect(
       expiryDate: state.card.expiryDate,
       cardName: state.card.cardName,
       cvc: state.card.cvc,
-      token: state.auth.token
+      token: state.auth.token,
+      error: state.card.error,
+      loading: state.card.loading
     }),
   { putCard }
 )(ProfileCard)

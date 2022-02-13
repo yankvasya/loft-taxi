@@ -2,14 +2,19 @@ import './style.scss'
 import Button from '../button/Button'
 import Field from '../field/Field'
 import { connect } from 'react-redux'
-import { authenticate } from '../../modules/actions'
+import { authenticate, authError } from '../../modules/actions'
 import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
+import { useEffect } from 'react'
 
 export const Login = (props) => {
   const { register, handleSubmit, formState: { errors } } = useForm()
   const { setPage, isLoggedIn, error, loading } = props
   const authorization = ({ email, password }) => props.authenticate(email, password)
+
+  useEffect(() => {
+    props.authError(null)
+  }, [])
 
   const login = () => !isLoggedIn
     ? (
@@ -19,6 +24,7 @@ export const Login = (props) => {
                  <Field
                      register={register}
                      errors={errors}
+                     error="Введите email"
                      label="email"
                      text="Email"
                      required
@@ -31,6 +37,7 @@ export const Login = (props) => {
                 <Field
                     register={register}
                     errors={errors}
+                    error="Введите пароль"
                     label="password"
                     text="Пароль"
                     required
@@ -49,13 +56,14 @@ export const Login = (props) => {
                 <Button
                     text={'Попытка входа'}
                     type="submit"
+                    disabled={loading}
                 />
 
                 {error &&
                     (
                     <span className="error" >
-                  Ошибка авторизации, пользователь существует
-                </span>
+                      {error}
+                    </span>
                     )}
             </form>
 
@@ -91,7 +99,7 @@ export const LoginWithData = connect(
   state => ({
     isLoggedIn: state.auth.isLoggedIn,
     loading: state.auth.loading,
-    error: state.auth.err
+    error: state.auth.error
   }),
-  { authenticate }
+  { authenticate, authError }
 )(Login)

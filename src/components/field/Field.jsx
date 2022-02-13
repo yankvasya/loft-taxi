@@ -4,6 +4,7 @@ const Field = (props) => {
   const {
     label,
     text,
+    error,
     register,
     required,
     errors,
@@ -28,7 +29,7 @@ const Field = (props) => {
                 className="input"
                 autoComplete={autoComplete}
             />
-            {errors[label] && <span className="errors">{ label } is required</span>}
+            {errors[label] && <span className="errors">{error || `${label} is required` }</span>}
         </div>
   )
 }

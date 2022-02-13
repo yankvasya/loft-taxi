@@ -1,6 +1,6 @@
 import { takeEvery, call, put } from 'redux-saga/effects'
 
-import { AUTHENTICATE, getCard, logIn, REGISTRATION } from '../actions'
+import { AUTHENTICATE, authError, getCard, logIn, REGISTRATION } from '../actions'
 import { serverLogin, serverRegister } from '../api'
 import { checkData } from '../localStorage'
 
@@ -11,6 +11,8 @@ export function * authenticateSaga (action) {
   if (data.success) {
     yield put(logIn(email, password, data.token))
     yield put(getCard(data.token))
+  } else {
+    yield put(authError(data.error))
   }
 }
 
@@ -22,6 +24,8 @@ export function * registrationSaga (action) {
   if (data.success) {
     yield put(logIn(email, password, data.token))
     yield put(getCard(data.token))
+  } else {
+    yield put(authError(data.error))
   }
 }
 
