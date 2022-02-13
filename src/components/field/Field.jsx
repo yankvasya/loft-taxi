@@ -2,38 +2,33 @@ import './style.scss'
 
 const Field = (props) => {
   const {
-    currentId,
+    label,
     text,
-    placeholder,
-    autocomplete,
+    register,
+    required,
+    errors,
     minLength,
     maxLength,
-    inputValue = '',
+    pattern,
+    defaultValue,
     type = 'text',
-    pattern = null
+    autoComplete
   } =
     props
 
   return (
         <div className="field">
-            <label
-                className="label"
-                htmlFor={ currentId }
-            >
-                { text }
+            <label className="label">
+              { text || label }
             </label>
             <input
+                { ...register(label, { required, minLength, maxLength, pattern }) }
+                defaultValue={ defaultValue }
+                type={ type }
                 className="input"
-                autoComplete={ autocomplete }
-                name={ currentId }
-                id={ currentId }
-                placeholder={ placeholder }
-                maxLength={maxLength}
-                minLength={minLength}
-                defaultValue={inputValue}
-                typeof={type}
-                pattern={pattern}
+                autoComplete={autoComplete}
             />
+            {errors[label] && <span className="errors">{ label } is required</span>}
         </div>
   )
 }

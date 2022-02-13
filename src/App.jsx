@@ -14,7 +14,8 @@ import { authenticate } from './modules/actions'
 function App (props) {
   useEffect(() => {
     props.authenticate()
-  }, [])
+    console.log('попытка логина')
+  }, [props.authenticate])
 
   return (
     <div className="App">

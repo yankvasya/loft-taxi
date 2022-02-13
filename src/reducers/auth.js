@@ -9,12 +9,12 @@ const initialState = {
 }
 
 export const auth = (state = initialState, action) => {
+  console.log(LOG_OUT)
   switch (action.type) {
     case AUTHENTICATE: {
       return state
     }
     case LOG_IN: {
-      console.log(LOG_IN)
       const { email, password, token } = action.payload
       setLocalStorage(email, password)
       return { ...state, isLoggedIn: true, token }
@@ -24,7 +24,6 @@ export const auth = (state = initialState, action) => {
       return { isLoggedIn: false }
     }
     case REGISTRATION: {
-      console.log(action)
       return state
     }
     default:

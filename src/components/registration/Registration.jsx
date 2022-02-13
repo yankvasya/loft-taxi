@@ -4,46 +4,59 @@ import Field from '../field/Field'
 import { connect } from 'react-redux'
 import { registration } from '../../modules/actions'
 import { Link } from 'react-router-dom'
+import { useForm } from 'react-hook-form'
 
 const Registration = (props) => {
+  const { register, handleSubmit, formState: { errors } } = useForm()
   const { setPage, isLoggedIn } = props
 
-  const registration = e => {
-    e.preventDefault()
-    const { email, password, fullName } = e.target.elements
-    const [name, surname] = fullName.value.split(' ')
-    props.registration(email.value, password.value, name, surname)
+  const registration = ({ email, password, fullName }) => {
+    const [name, surname] = fullName.split(' ')
+    props.registration(email, password, name, surname)
   }
 
   const registr = () => !isLoggedIn
     ? (
      <>
-       <form className="form" onSubmit={registration}>
+       <form className="form" onSubmit={handleSubmit(registration)}>
          <Field
-           currentId="email"
-           text="Email"
-           placeholder="mail@mail.ru"
-           autocomplete="email"
-           type="text"
+             register={register}
+             errors={errors}
+             label="email"
+             text="Email*"
+             required
+             maxLength="30"
+             defaultValue="test@test.com"
+             type="email"
+             autoComplete="email"
          />
 
          <Field
-           currentId="fullName"
-           text="Как вас зовут?*"
-           placeholder="Петр Александрович"
-           autocomplete="name"
-           type="text"
+             register={register}
+             errors={errors}
+             label="fullName"
+             text="Как вас зовут?*"
+             required
+             maxLength="30"
+             defaultValue="123123"
+             type="text"
+             autoComplete="fullName"
+             pattern={/[А-я]{3,9} [А-я]{3,9}|[A-z]{3,9} [A-z]{3,9}/}
          />
 
          <Field
-           currentId="password"
-           text="Придумайте пароль*"
-           placeholder="*************"
-           autocomplete="password"
-           type="password"
+             register={register}
+             errors={errors}
+             label="password"
+             text="Придумайте пароль*"
+             required
+             maxLength="30"
+             defaultValue="123123"
+             type="password"
+             autoComplete="password"
          />
 
-         <Button text="Зарегистрироваться" type="submit" disabled={false} />
+         <Button text="Зарегистрироваться" type="submit"/>
        </form>
 
        <div className="change-type">
@@ -74,6 +87,9 @@ const Registration = (props) => {
 }
 
 export const RegistrationWithData = connect(
-  state => ({ isLoggedIn: state.auth.isLoggedIn }),
+  state => ({
+    isLoggedIn: state.auth.isLoggedIn,
+    loading: state.auth.loading
+  }),
   { registration }
 )(Registration)

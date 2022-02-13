@@ -1,6 +1,8 @@
 @import '../../styles/mixins';
 
 .authorization {
+  position: relative;
+
   &__title {
     font-weight: bold;
     font-size: 30px;
@@ -50,5 +52,14 @@
 
   .change-type {
     @include change-type;
+  }
+
+  .error {
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
+    font-size: 12px;
+    color: $mastercard-red;
   }
 }

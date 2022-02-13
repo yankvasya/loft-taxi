@@ -15,12 +15,10 @@ export const card = (state = initialState, action) => {
       return { ...state, loading: true }
     }
     case PUT_CARD: {
-      console.log(action.type, action.payload)
       return { ...state, loading: true, error: null }
     }
     case SAVE_CARD: {
       const { cardNumber, expiryDate, cardName, cvc } = action.payload
-      console.log(action.type, action.payload)
       return { ...state, cardNumber, expiryDate, cardName, cvc, loading: false, error: null }
     }
     default:

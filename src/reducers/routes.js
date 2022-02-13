@@ -22,11 +22,9 @@ export const routes = (state = initialState, action) => {
     }
     case CAN_BE_ROUTE: {
       const { route } = action.payload
-      console.log(state)
       return { ...state, route, loading: false, error: null }
     }
     case DELETE_ROUTE: {
-      console.log(action.type)
       return { ...state, route: null }
     }
     default:

@@ -21,11 +21,16 @@ const MapBoxNoData = (props) => {
     })
 
     if (props.route && map !== null) {
+      console.log('рисуем')
       setTimeout(() => {
         drawRoute(map, props.route)
       }, 666)
     }
-  })
+
+    return () => {
+      map.remove()
+    }
+  }, [props.route])
 
   return (
     <div className="map-wrapper">
@@ -35,5 +40,5 @@ const MapBoxNoData = (props) => {
 }
 
 export const MapBox = connect(
-  state => ({ route: state.routes.route })
+  state => ({ route: state.routes.route, loading: state.routes.loading })
 )(MapBoxNoData)

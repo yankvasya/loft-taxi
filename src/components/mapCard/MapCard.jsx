@@ -1,6 +1,8 @@
 import './style.scss'
 
 import { connect } from 'react-redux'
+import { useForm } from 'react-hook-form'
+
 import Button from '../button/Button'
 
 import { ReactComponent as Arrow } from '../../assets/icons/arrow.svg'
@@ -12,12 +14,13 @@ import { useEffect, useState } from 'react'
 import { goRoute } from '../../modules/actions'
 
 const MapCard = (props) => {
+  const { register, handleSubmit } = useForm()
   const [currentCar, changeCurrentCar] = useState(0)
   const [currentAddresses, changeCurrentAddresses] = useState({ address1: '', address2: '' })
 
   useEffect(() => {
     changeCurrentAddresses({ address1: props.routes[0], address2: props.routes[1] })
-  }, [])
+  }, [props.routes])
 
   const cars = [
     { type: 'Стандарт', price: 150, img: Standard },
@@ -34,50 +37,43 @@ const MapCard = (props) => {
       .map(route => (
       <option
         className="address__option"
-        value={route}
-        key={route}
+        value={`${route}`}
+        key={`${route}`}
       >
         {route}
       </option>
       ))
 
-  const submitForm = (event) => {
-    event.preventDefault()
-    const { address1, address2 } = event.target.elements
-
-    props.goRoute(address1.value, address2.value)
-  }
+  const submitForm = ({ address1, address2 }) => props.goRoute(address1, address2)
 
   const addressChanged = ({ target }) => {
     changeCurrentAddresses({ ...currentAddresses, [target.name]: target.value })
   }
 
   return (
-    <form className="mapCard" onSubmit={submitForm}>
+    <form className="mapCard" onSubmit={handleSubmit(submitForm)}>
       <div className="addresses">
         <div className="address">
           <div className="icon" />
           <select
-            name="address1"
+            {...register('address1', { required: true })}
             className="address__select"
             onChange={addressChanged}
           >
             {routes('address2')}
           </select>
-
           <button className="close" />
         </div>
 
         <div className="address">
           <Arrow />
           <select
-            name="address2"
+            {...register('address2', { required: true })}
             className="address__select"
             onChange={addressChanged}
           >
             {routes('address1')}
           </select>
-
           <button className="close" />
         </div>
       </div>
