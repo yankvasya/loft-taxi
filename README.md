@@ -1,5 +1,11 @@
 # Getting Started with Create React App
 
+### Test user
+login: `test@test.com` <br>
+password: `123123`
+<br>
+<br>
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
