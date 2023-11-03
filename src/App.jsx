@@ -20,7 +20,7 @@ function App (props) {
     <div className="App">
       <Routes>
       <Route exact path="/" element={<Auth />} />
-      <Route path="/map" element={<PrivateRoute><Map /></PrivateRoute>} />}
+      <Route path="/map" element={<PrivateRoute><Map /></PrivateRoute>} />
       <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>} />
       </Routes>
     </div>
